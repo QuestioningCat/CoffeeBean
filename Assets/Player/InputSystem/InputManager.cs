@@ -45,4 +45,12 @@ public class InputManager : MonoBehaviour
     {
         return playerControls.Player.Jump.triggered;
     }
+    public bool JumpButtonDown()
+    {
+        return playerControls.Player.Jump.ReadValue<float>() > 0f;
+    }
+    public bool JumpButtonUp()
+    {
+        return playerControls.Player.Jump.triggered && playerControls.Player.Jump.ReadValue<float>() == default;
+    }
 }

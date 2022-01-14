@@ -27,11 +27,13 @@ public class PlayerMovment : MonoBehaviour
     float verticalMovement;
 
     float jumpForce = 15f;
+    float fallMult = 2.5f;
+    float lowJumpMult = 2f;
 
     float playerHeight = 2f;
 
     float groundDrag = 6f;
-    float airDrag = 2f;
+    float airDrag = 4f;
 
     [Header("Ground Detection")]
     [SerializeField]
@@ -51,13 +53,21 @@ public class PlayerMovment : MonoBehaviour
     private void Update()
     {
         isGrounded = Physics.CheckSphere(transform.position, groundDistance, groundMask);
-        Debug.Log(isGrounded);
 
         MyInput();
         ControlDrag();
 
         if (inputManager.PlayerJumpedThisFrame() && isGrounded)
-            Jump();
+        {
+            rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
+        }
+
+        if ( rb.velocity.y < 0)
+            rb.velocity += Vector3.up * Physics.gravity.y * (fallMult - 1) * Time.deltaTime;
+        else if (rb.velocity.y > 0 && !inputManager.JumpButtonDown())
+            rb.velocity += Vector3.up * Physics.gravity.y * (lowJumpMult - 1) * Time.deltaTime;
+
+
         slopeMoveDir = Vector3.ProjectOnPlane(moveDir, slopeHit.normal);
     }
     private bool OnSlope()
@@ -68,10 +78,6 @@ public class PlayerMovment : MonoBehaviour
                 return true;
         }
         return false;
-    }
-    void Jump()
-    {
-        rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
     }
     void ControlDrag()
     {

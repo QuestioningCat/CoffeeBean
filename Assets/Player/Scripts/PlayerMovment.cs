@@ -27,8 +27,7 @@ public class PlayerMovment : MonoBehaviour
     float verticalMovement;
 
     float jumpForce = 15f;
-    float fallMult = 2.5f;
-    float lowJumpMult = 2f;
+    float fallMult = 5f;
 
     float playerHeight = 2f;
 
@@ -62,10 +61,8 @@ public class PlayerMovment : MonoBehaviour
             rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
         }
 
-        if ( rb.velocity.y < 0)
+        if (rb.velocity.y < 0)
             rb.velocity += Vector3.up * Physics.gravity.y * (fallMult - 1) * Time.deltaTime;
-        else if (rb.velocity.y > 0 && !inputManager.JumpButtonDown())
-            rb.velocity += Vector3.up * Physics.gravity.y * (lowJumpMult - 1) * Time.deltaTime;
 
 
         slopeMoveDir = Vector3.ProjectOnPlane(moveDir, slopeHit.normal);

@@ -53,4 +53,6 @@ public class InputManager : MonoBehaviour
     {
         return playerControls.Player.Jump.triggered && playerControls.Player.Jump.ReadValue<float>() == default;
     }
+
+    //https://forum.unity.com/threads/new-input-system-check-if-a-key-was-pressed.952571/
 }

@@ -5,6 +5,8 @@ using UnityEngine.InputSystem;
 
 public class InputManager : MonoBehaviour
 {
+    //https://forum.unity.com/threads/new-input-system-check-if-a-key-was-pressed.952571/ Could be something to look into
+
     //https://www.youtube.com/watch?v=LqnPeqoJRFY
     private static InputManager _instance;
 
@@ -54,5 +56,13 @@ public class InputManager : MonoBehaviour
         return playerControls.Player.Jump.triggered && playerControls.Player.Jump.ReadValue<float>() == default;
     }
 
-    //https://forum.unity.com/threads/new-input-system-check-if-a-key-was-pressed.952571/
+    public bool LeftInteractThisFrame()
+    {
+        return playerControls.Player.LeftHandInteract.triggered;
+    }
+
+    public bool RightInteractThisFrame()
+    {
+        return playerControls.Player.RightHandInteract.triggered;
+    }
 }

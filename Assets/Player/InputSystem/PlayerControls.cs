@@ -41,6 +41,22 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""LeftHandInteract"",
+                    ""type"": ""Button"",
+                    ""id"": ""2f1ba537-2afd-4147-96d5-2693f159a9bd"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""RightHandInteract"",
+                    ""type"": ""Button"",
+                    ""id"": ""1a54ff5c-7ca7-4a14-ac66-4da4bcd59375"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -120,6 +136,28 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""action"": ""Jump"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""dc3c1b8f-aace-4090-883a-372dedac89cf"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LeftHandInteract"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f1d62e33-c219-44fe-a9e9-48580b087957"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RightHandInteract"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -131,6 +169,8 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         m_Player_Movment = m_Player.FindAction("Movment", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
+        m_Player_LeftHandInteract = m_Player.FindAction("LeftHandInteract", throwIfNotFound: true);
+        m_Player_RightHandInteract = m_Player.FindAction("RightHandInteract", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -183,6 +223,8 @@ public class @PlayerControls : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_Movment;
     private readonly InputAction m_Player_Jump;
     private readonly InputAction m_Player_Look;
+    private readonly InputAction m_Player_LeftHandInteract;
+    private readonly InputAction m_Player_RightHandInteract;
     public struct PlayerActions
     {
         private @PlayerControls m_Wrapper;
@@ -190,6 +232,8 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         public InputAction @Movment => m_Wrapper.m_Player_Movment;
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
         public InputAction @Look => m_Wrapper.m_Player_Look;
+        public InputAction @LeftHandInteract => m_Wrapper.m_Player_LeftHandInteract;
+        public InputAction @RightHandInteract => m_Wrapper.m_Player_RightHandInteract;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -208,6 +252,12 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @Look.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLook;
                 @Look.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLook;
                 @Look.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLook;
+                @LeftHandInteract.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLeftHandInteract;
+                @LeftHandInteract.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLeftHandInteract;
+                @LeftHandInteract.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLeftHandInteract;
+                @RightHandInteract.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRightHandInteract;
+                @RightHandInteract.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRightHandInteract;
+                @RightHandInteract.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRightHandInteract;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -221,6 +271,12 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @Look.started += instance.OnLook;
                 @Look.performed += instance.OnLook;
                 @Look.canceled += instance.OnLook;
+                @LeftHandInteract.started += instance.OnLeftHandInteract;
+                @LeftHandInteract.performed += instance.OnLeftHandInteract;
+                @LeftHandInteract.canceled += instance.OnLeftHandInteract;
+                @RightHandInteract.started += instance.OnRightHandInteract;
+                @RightHandInteract.performed += instance.OnRightHandInteract;
+                @RightHandInteract.canceled += instance.OnRightHandInteract;
             }
         }
     }
@@ -230,5 +286,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         void OnMovment(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnLook(InputAction.CallbackContext context);
+        void OnLeftHandInteract(InputAction.CallbackContext context);
+        void OnRightHandInteract(InputAction.CallbackContext context);
     }
 }

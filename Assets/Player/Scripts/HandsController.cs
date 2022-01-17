@@ -8,17 +8,17 @@ public class HandsController : MonoBehaviour
 
     [Header("Hands")]
     [SerializeField]
-    Transform LeftHandTransform;
+    Transform LeftHandLocationRef;
     [SerializeField]
-    Transform RightHandTransform;
+    Transform RightHandLocationRef;
 
     [Header("Camera")]
     [SerializeField]
     Transform cameraHolder;
 
     // What the hands are holding
-    private Transform LeftHandHolding = null;
-    private Transform RightHandHolding = null;
+    private Transform TransformInLeftHand = null;
+    private Transform TransformInRightHnad = null;
 
     // if the on the of the hand interact buttons is pressed
     // and we are looking at an item that we can pick up
@@ -36,38 +36,82 @@ public class HandsController : MonoBehaviour
 
     private void Update()
     {
-        if (LeftHandHolding != null)
+        if(TransformInLeftHand != null)
         {
-            LeftHandHolding.position = Vector3.Lerp(LeftHandHolding.position, LeftHandTransform.position, 10f * Time.deltaTime);
-            LeftHandHolding.rotation = LeftHandTransform.rotation;
+            TransformInLeftHand.position = Vector3.Slerp(TransformInLeftHand.position, LeftHandLocationRef.position, 10f * Time.deltaTime);
+            TransformInLeftHand.rotation = LeftHandLocationRef.rotation;
         }
 
+        if(TransformInRightHnad != null)
+        {
+            TransformInRightHnad.position = Vector3.Slerp(TransformInRightHnad.position, RightHandLocationRef.position, 10f * Time.deltaTime);
+            TransformInRightHnad.rotation = RightHandLocationRef.rotation;
+        }
 
         // Just going to make it ugly for now, will clean up later :)
-            if (inputManager.LeftInteractThisFrame() && LeftHandHolding == null)
+        if (inputManager.LeftInteractThisFrame())
         {
-            // we are not holding anything.
-            RaycastHit hit;
-            if (Physics.Raycast(cameraHolder.position, cameraHolder.forward, out hit, 2.5f))
+            if(TransformInLeftHand == null)
             {
-                // check to see if we are looking at something we can pick up
-                if(hit.transform.tag == "PickUp")
+                // we are not holding anything.
+                RaycastHit hit;
+                if(Physics.Raycast(cameraHolder.position, cameraHolder.forward, out hit, 2.5f))
                 {
-                    PickUpItemInHand(hit.transform, LeftHandTransform);
-                    LeftHandHolding = hit.transform;
+                    // check to see if we are looking at something we can pick up
+                    if(hit.transform.tag == "PickUp")
+                    {
+                        PickUpItemInHand(hit.transform, LeftHandLocationRef);
+                        TransformInLeftHand = hit.transform;
+                    }
                 }
+            }
+            else
+            {
+                // We are holding something and need to drop it
+                DropItemFromHand(TransformInLeftHand, LeftHandLocationRef);
+                TransformInLeftHand = null;
+            }
+        }
+        else if (inputManager.RightInteractThisFrame())
+        {
+            if(TransformInRightHnad == null)
+            {
+                // we are not holding anything.
+                RaycastHit hit;
+                if(Physics.Raycast(cameraHolder.position, cameraHolder.forward, out hit, 2.5f))
+                {
+                    // check to see if we are looking at something we can pick up
+                    if(hit.transform.tag == "PickUp")
+                    {
+                        PickUpItemInHand(hit.transform, RightHandLocationRef);
+                        TransformInRightHnad = hit.transform;
+                    }
+                }
+            }
+            else
+            {
+                // We are holding something and need to drop it
+                DropItemFromHand(TransformInRightHnad, RightHandLocationRef);
+                TransformInRightHnad = null;
             }
         }
 
 
     }
 
-    private void PickUpItemInHand(Transform item, Transform hand)
+    private void PickUpItemInHand(Transform item, Transform handLocationReference)
     {
         Rigidbody rb = item.GetComponent<Rigidbody>();
         rb.useGravity = false;
         rb.freezeRotation = true;
         item.GetComponent<BoxCollider>().enabled = false;
 
+    }
+    private void DropItemFromHand(Transform item, Transform hand)
+    {
+        Rigidbody rb = item.GetComponent<Rigidbody>();
+        rb.useGravity = true;
+        rb.freezeRotation = false;
+        item.GetComponent<BoxCollider>().enabled = true;
     }
 }

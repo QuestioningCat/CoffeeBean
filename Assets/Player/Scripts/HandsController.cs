@@ -36,29 +36,38 @@ public class HandsController : MonoBehaviour
 
     private void Update()
     {
+        if (LeftHandHolding != null)
+        {
+            LeftHandHolding.position = Vector3.Lerp(LeftHandHolding.position, LeftHandTransform.position, 10f * Time.deltaTime);
+            LeftHandHolding.rotation = LeftHandTransform.rotation;
+        }
+
 
         // Just going to make it ugly for now, will clean up later :)
-        if (inputManager.LeftInteractThisFrame() && LeftHandHolding == null)
+            if (inputManager.LeftInteractThisFrame() && LeftHandHolding == null)
         {
             // we are not holding anything.
             RaycastHit hit;
-            if (Physics.Raycast(cameraHolder.position, cameraHolder.forward, out hit, 3f))
+            if (Physics.Raycast(cameraHolder.position, cameraHolder.forward, out hit, 2.5f))
             {
                 // check to see if we are looking at something we can pick up
-                // TODO::
-                /*
-                 * Make a scriptable object that holds all data relivent to an item that can be picked up.
-                 * this SO will hold information regardning what is in the container and how hot it is.
-                 * My plan is to use this for as many different items as possible
-                 * for example, the Portafilter will hold coffee, and the game will need to know how hot the filter is to determin
-                 * how final quality of the coffee based on the temprature change during the extraction prossess
-                 * this SO can also be used for jugs for milk. The jug will hold information about how much milk is in it and how much air is in it
-                 * This can be used later to determin what type of coffee has been made.
-                 * The coffee can also be represented with this SO, as it will hold the price and the quality of the coffee.
-                 */
+                if(hit.transform.tag == "PickUp")
+                {
+                    PickUpItemInHand(hit.transform, LeftHandTransform);
+                    LeftHandHolding = hit.transform;
+                }
             }
         }
 
+
+    }
+
+    private void PickUpItemInHand(Transform item, Transform hand)
+    {
+        Rigidbody rb = item.GetComponent<Rigidbody>();
+        rb.useGravity = false;
+        rb.freezeRotation = true;
+        item.GetComponent<BoxCollider>().enabled = false;
 
     }
 }

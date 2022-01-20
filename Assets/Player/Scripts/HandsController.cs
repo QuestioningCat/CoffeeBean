@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -20,6 +21,9 @@ public class HandsController : MonoBehaviour
     private Transform TransformInLeftHand = null;
     private Transform TransformInRightHnad = null;
 
+    // distance the player can be away from something to pick it up
+    private float pickUpDistance = 2.5f; 
+
     // if the on the of the hand interact buttons is pressed
     // and we are looking at an item that we can pick up
     // then pick up that item.
@@ -36,26 +40,17 @@ public class HandsController : MonoBehaviour
 
     private void Update()
     {
-        if(TransformInLeftHand != null)
-        {
-            TransformInLeftHand.position = Vector3.Slerp(TransformInLeftHand.position, LeftHandLocationRef.position, 10f * Time.deltaTime);
-            TransformInLeftHand.rotation = LeftHandLocationRef.rotation;
-        }
-
-        if(TransformInRightHnad != null)
-        {
-            TransformInRightHnad.position = Vector3.Slerp(TransformInRightHnad.position, RightHandLocationRef.position, 10f * Time.deltaTime);
-            TransformInRightHnad.rotation = RightHandLocationRef.rotation;
-        }
+        UpdateHeldItemsPostions();
 
         // Just going to make it ugly for now, will clean up later :)
         if (inputManager.LeftInteractThisFrame())
         {
+            RaycastHit hit;
+            Ray ray = new Ray(cameraHolder.position, cameraHolder.forward);
             if(TransformInLeftHand == null)
             {
                 // we are not holding anything.
-                RaycastHit hit;
-                if(Physics.Raycast(cameraHolder.position, cameraHolder.forward, out hit, 2.5f))
+                if(Physics.Raycast(ray, out hit, pickUpDistance))
                 {
                     // check to see if we are looking at something we can pick up
                     if(hit.transform.tag == "PickUp")
@@ -65,8 +60,24 @@ public class HandsController : MonoBehaviour
                     }
                 }
             }
-            else
+            else if(TransformInLeftHand != null)
             {
+                if (Physics.Raycast(ray, out hit, pickUpDistance))
+                {
+                    MachineController machineController = hit.transform.GetComponent<MachineController>();
+                    if (machineController != null)
+                    {
+                        // the player is holding an item and has clicked on an machine which can accept items the player can pick up
+                        // check to see what hit box the player has clicked on.
+                        if (machineController.MachineAcceptedPlayerItem(TransformInLeftHand))
+                            TransformInLeftHand = null;
+                        return;
+                    }
+                }
+
+                // If we are here. Then we are looking at something and holding an item, but we cant do anything with it
+                // so just drop it
+                // to prevent this final action, you should return before reaching this point
                 // We are holding something and need to drop it
                 DropItemFromHand(TransformInLeftHand, LeftHandLocationRef);
                 TransformInLeftHand = null;
@@ -88,15 +99,28 @@ public class HandsController : MonoBehaviour
                     }
                 }
             }
-            else
+            else if(TransformInRightHnad != null)
             {
                 // We are holding something and need to drop it
                 DropItemFromHand(TransformInRightHnad, RightHandLocationRef);
                 TransformInRightHnad = null;
             }
         }
+    }
 
+    private void UpdateHeldItemsPostions()
+    {
+        if(TransformInLeftHand != null)
+        {
+            TransformInLeftHand.position = Vector3.Slerp(TransformInLeftHand.position, LeftHandLocationRef.position, 10f * Time.deltaTime);
+            TransformInLeftHand.rotation = LeftHandLocationRef.rotation;
+        }
 
+        if(TransformInRightHnad != null)
+        {
+            TransformInRightHnad.position = Vector3.Slerp(TransformInRightHnad.position, RightHandLocationRef.position, 10f * Time.deltaTime);
+            TransformInRightHnad.rotation = RightHandLocationRef.rotation;
+        }
     }
 
     private void PickUpItemInHand(Transform item, Transform handLocationReference)

@@ -9,12 +9,14 @@ public class MachineController : MonoBehaviour
 
     [Header("Attachment Points")]
     [SerializeField]
-    Transform Portafilter = null;
+    Transform portafilterAtachmentPoint = null;
 
 
     [Header("Hit box for interactions")]
     [SerializeField]
-    BoxCollider portafilterCollider;
+    BoxCollider portafilterCollider = null;
+
+    private Transform portafilter = null;
 
     
     /*
@@ -26,19 +28,21 @@ public class MachineController : MonoBehaviour
      * - then the grinder will take the portafilter from the player and add ground coffee into it.
      */
 
-    public bool MachineAcceptedPlayerItem(Transform clickedWith)
+    public bool MachineAcceptedPlayerItem(Transform clickedWith, Collider hitCollider)
     {
         CoffeeEquipmentComponentes type = clickedWith.GetComponentInParent<ItemManager>().GetItemSOData().type;
-
         switch (type)
         {
             case CoffeeEquipmentComponentes.Portafilter:
-                if(Portafilter != null)
+                if(portafilterAtachmentPoint != null && hitCollider == portafilterCollider && portafilter == null)
                 {
-                    clickedWith.position = Portafilter.position;
-                    clickedWith.rotation = Portafilter.rotation;
+
+                    portafilter = clickedWith;
+                    clickedWith.position = portafilterAtachmentPoint.position;
+                    clickedWith.rotation = portafilterAtachmentPoint.rotation;
+                    return true;
                 }
-                return true;
+                break;
             case CoffeeEquipmentComponentes.MilkJug:
                 break;
             case CoffeeEquipmentComponentes.CoffeeBag:
@@ -48,9 +52,22 @@ public class MachineController : MonoBehaviour
                 return false;
         }
 
+
         return false;
     }
 
+    public Transform PlayerPickedUpItem(Collider hitCollider)
+    {
+        if(hitCollider == portafilterCollider)
+        {
+            Transform tempT = portafilter;
+            portafilter = null;
+            return tempT;
+        }
+
+        // there is nothing to pick up
+        return null;
+    }
 
 }
 

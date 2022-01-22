@@ -52,8 +52,20 @@ public class HandsController : MonoBehaviour
                 // we are not holding anything.
                 if(Physics.Raycast(ray, out hit, pickUpDistance))
                 {
-                    // check to see if we are looking at something we can pick up
-                    if(hit.transform.tag == "PickUp")
+                    MachineController machineController = hit.transform.GetComponent<MachineController>();
+                    if(machineController != null)
+                    {
+                        // the player has clicked on a part of the machine
+                        // check to see if there is anything in that part of the machine that can picked up
+                        Transform tempItem = machineController.PlayerPickedUpItem(hit.collider);
+                        if (tempItem != null)
+                        {
+                            // the player picked up the Item from the machine
+                            PickUpItemInHand(tempItem, LeftHandLocationRef);
+                            TransformInLeftHand = tempItem;
+                        }
+                    }
+                    else if(hit.transform.tag == "PickUp") // check to see if we are looking at something we can pick up
                     {
                         PickUpItemInHand(hit.transform, LeftHandLocationRef);
                         TransformInLeftHand = hit.transform;
@@ -69,8 +81,10 @@ public class HandsController : MonoBehaviour
                     {
                         // the player is holding an item and has clicked on an machine which can accept items the player can pick up
                         // check to see what hit box the player has clicked on.
-                        if (machineController.MachineAcceptedPlayerItem(TransformInLeftHand))
+                        if(machineController.MachineAcceptedPlayerItem(TransformInLeftHand, hit.collider))
+                        {
                             TransformInLeftHand = null;
+                        }
                         return;
                     }
                 }

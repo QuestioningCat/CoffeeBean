@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 266afc1c7728a114e9a955bafb7bbbd8, type: 3}
   m_Name: Portafilter
   m_EditorClassIdentifier: 
-  Name: Portafilter
+  Name: Basic Portafilter
+  type: 0
   ItemStates:
-  - {fileID: 1776157100363151962, guid: ce3204fa1742c304b9428e91ec92adce, type: 3}
-  - {fileID: 3268217991281174174, guid: 055060b65516d12439b186fce28c5ee6, type: 3}
-  - {fileID: 8062678146778513677, guid: 5511e770f6a1dda47ac23cd2bc5a8db0, type: 3}
+  - {fileID: 919132149155446097, guid: 862d7a8911fe74947b4683bf14b359ed, type: 3}
+  - {fileID: 919132149155446097, guid: bf91319829f6f8b46acfaa24d360de6a, type: 3}
+  - {fileID: 919132149155446097, guid: 24b0fc4fd554f8f4084d6ed76ffe6d31, type: 3}

@@ -16,6 +16,12 @@ public class MachineController : MonoBehaviour
     [SerializeField]
     BoxCollider portafilterCollider = null;
 
+    //[Header("Events")]
+    //[Tooltip("the scriptable object which will raise the event when a portafilter is attached")]
+    //public GameEvent portafilterAttached;
+
+    public VoidEvent OnTestVoidEvent;
+
     private Transform portafilter = null;
 
     
@@ -40,6 +46,16 @@ public class MachineController : MonoBehaviour
                     portafilter = clickedWith;
                     clickedWith.position = portafilterAtachmentPoint.position;
                     clickedWith.rotation = portafilterAtachmentPoint.rotation;
+
+                    if(portafilter != null)
+                    {
+                        //if(GameEventHub.EquipmentAttached.ItemThatWasAttached != null)
+                        //    portafilterAttached.Raise();
+                        //else
+                            Debug.Log("DING");
+
+                        OnTestVoidEvent.Raise();
+                    }
                     return true;
                 }
                 break;

@@ -36,7 +36,7 @@ public class MachineController : MonoBehaviour
 
     public bool MachineAcceptedPlayerItem(Transform clickedWith, Collider hitCollider)
     {
-        CoffeeEquipmentComponentes type = clickedWith.GetComponentInParent<ItemManager>().GetItemSOData().type;
+        CoffeeEquipmentComponentes type = clickedWith.GetComponentInParent<Item>().GetItemSOData().type;
         switch (type)
         {
             case CoffeeEquipmentComponentes.Portafilter:
@@ -52,9 +52,9 @@ public class MachineController : MonoBehaviour
                         //if(GameEventHub.EquipmentAttached.ItemThatWasAttached != null)
                         //    portafilterAttached.Raise();
                         //else
-                            Debug.Log("DING");
+                            //Debug.Log("DING");
 
-                        OnTestVoidEvent.Raise();
+                        //OnTestVoidEvent.Raise();
                     }
                     return true;
                 }

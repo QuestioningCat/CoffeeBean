@@ -7,20 +7,33 @@ using UnityEngine;
 // this keeps all ID dynamic and means I do not have to deal with it XD
 public class ItemsManager : MonoBehaviour
 {
-    private static ItemsManager _instance;
-
-    public static ItemsManager Instance { get { return _instance; } }
-
+    private Dictionary<int, Item> itemsDictionary;
 
     private void Awake()
     {
-        // Prevent multiple instances of ItemsManager from existing at the same time.
-        if(_instance != null && _instance != this)
-            Destroy(this.gameObject);
-        else
-            _instance = this;
+        itemsDictionary = new Dictionary<int, Item>();
     }
 
+    public void RegisterNewItem(Item item)
+    {
+        foreach(int ID in itemsDictionary.Keys)
+        {
+            if ( itemsDictionary[ID] == item)
+            {
+                // If this Item has already been registerd
+                // then just send back its ID so it can update itselft
+                item.UpdateItemID(ID);
+            }    
+        }
 
 
+        int index = itemsDictionary.Count;
+        itemsDictionary.Add(index, item);
+
+        //Debug.Log("New Item Registered with ID of: " + index);
+        //Debug.Log("Current List length is: " + itemsDictionary.Count);
+
+        // This Item has now been registed and we can send back the ID of the Item.
+        item.UpdateItemID(index);
+    }
 }

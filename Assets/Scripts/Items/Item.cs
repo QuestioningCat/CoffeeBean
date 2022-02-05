@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+
 public class Item : MonoBehaviour
 {
     [Header("Scriptable Object")]
@@ -9,13 +11,27 @@ public class Item : MonoBehaviour
     [SerializeField]
     ItemSO itemData;
 
-    // The item ID for the Item this is managing.
-    private int ID;
+    [Header("Events")]
+    [SerializeField]
+    private ItemEvent onNewItemCreated;
 
-    private int currentIndex = 0;
+    // The item ID for the Item this is managing.
+    private int ID = -1;
+
+    private int currentIndex = -1;
 
     private GameObject currentItem = null;
-    
+
+    public void UpdateItemID(int newID) { ID = newID; }
+
+    public ItemSO GetItemSOData() { return itemData; }
+
+
+    private void OnEnable()
+    {
+        onNewItemCreated.Raise(this);
+        ChangeItemState(0);
+    }
 
     public void ChangeItemState(int index)
     {
@@ -33,13 +49,8 @@ public class Item : MonoBehaviour
                 currentItem = Instantiate(itemData.ItemStates[index], this.transform.position, Quaternion.identity, this.transform);
 
 
-                this.transform.name = "Item - " + itemData.Name;
+                this.transform.name = "Item - " + itemData.Name + ":" + ID;
                 currentIndex = index;
-                Debug.Log("DING");
             }
     }
-
-
-
-    public ItemSO GetItemSOData() { return itemData; }
 }

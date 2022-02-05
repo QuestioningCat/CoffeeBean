@@ -26,11 +26,17 @@ public class Item : MonoBehaviour
 
     public ItemSO GetItemSOData() { return itemData; }
 
-
-    private void OnEnable()
+    private void Start()
     {
         onNewItemCreated.Raise(this);
         ChangeItemState(0);
+    }
+
+
+    private void OnEnable()
+    {
+        if(ID < 0)
+            onNewItemCreated.Raise(this);
     }
 
     public void ChangeItemState(int index)

@@ -6,8 +6,6 @@ using UnityEngine;
 
 public class Item : MonoBehaviour
 {
-
-
     [Header("Scriptable Object")]
     [Tooltip("The scriptable object template")]
     [SerializeField]
@@ -27,8 +25,9 @@ public class Item : MonoBehaviour
 
     public void UpdateItemID(int newID) { ID = newID; }
     public int GetItemID() { return ID; }
-
+    public int GetItemStateIndex() { return currentIndex; }
     public ItemSO GetItemSOData() { return itemData; }
+
 
     private void Start()
     {
@@ -55,8 +54,7 @@ public class Item : MonoBehaviour
 
             //TODO: ADD this item to a list of stored items so they can be loaded in only once and not multiple times.
             Destroy(currentItem);
-
-            currentItem = Instantiate(itemData.ItemStates[stateIndex], this.transform.position, Quaternion.identity, this.transform);
+            currentItem = Instantiate(itemData.ItemStates[stateIndex], this.transform.position, currentItem.transform.rotation, this.transform);
 
 
             this.transform.name = "Item - " + itemData.Name + ":" + ID;

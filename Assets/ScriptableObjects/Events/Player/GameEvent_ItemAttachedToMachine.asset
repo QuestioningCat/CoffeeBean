@@ -9,7 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c579e53ce6e3b504088710b6b9168e81, type: 3}
-  m_Name: GameEvent_PortafilterFilledInGrinder
+  m_Script: {fileID: 11500000, guid: d846c1d2a772f67498c12331ef6b9355, type: 3}
+  m_Name: GameEvent_ItemAttachedToMachine
   m_EditorClassIdentifier: 
-  NewState: 1

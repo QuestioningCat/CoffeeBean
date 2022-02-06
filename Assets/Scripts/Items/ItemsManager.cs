@@ -26,13 +26,8 @@ public class ItemsManager : MonoBehaviour
             }    
         }
 
-
         int index = itemsDictionary.Count;
         itemsDictionary.Add(index, item);
-
-        //Debug.Log("New Item Registered with ID of: " + index);
-        //Debug.Log("Current List length is: " + itemsDictionary.Count);
-
         // This Item has now been registed and we can send back the ID of the Item.
         item.UpdateItemID(index);
     }
@@ -40,7 +35,6 @@ public class ItemsManager : MonoBehaviour
 
     public void UpdateItemStateToGivenState(ItemDataPacket itemData)
     {
-        
         if (itemData.Item.GetItemID() < itemsDictionary.Count)
         {
             //Debug.Log("Updated item: " + itemData.Item.GetItemID() +" To new state of: " + itemData.NewStateIndex);

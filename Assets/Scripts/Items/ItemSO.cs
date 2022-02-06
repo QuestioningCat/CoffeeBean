@@ -2,7 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "CoffeeComponentItem", menuName = "Items/CoffeeComponentItem")]
+public enum CoffeeEquipmentComponentes { Portafilter, MilkJug, CoffeeBag };
+
+[CreateAssetMenu(fileName = "Coffee Component Item", menuName = "Items/Coffee Component Item")]
 public class ItemSO : ScriptableObject
 {
     public string Name;

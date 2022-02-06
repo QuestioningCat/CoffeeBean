@@ -2,9 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum CoffeeEquipmentComponentes { Portafilter, MilkJug, CoffeeBag};
 
-public class MachineController : MonoBehaviour
+public class GrinderController : MonoBehaviour
 {
 
     [Header("Attachment Points")]
@@ -79,6 +78,8 @@ public class MachineController : MonoBehaviour
         // there is nothing to pick up
         return null;
     }
+
+
 
 }
 

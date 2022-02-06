@@ -21,8 +21,12 @@ public class HandsController : MonoBehaviour
     private Transform TransformInLeftHand = null;
     private Transform TransformInRightHnad = null;
 
+    [Header("Events")]
+    [Tooltip("the scriptable object which will raise the event when the player tries to interact with something")]
+    [SerializeField] private MachineItemEvent onPlayerInteractWithMachine;
+
     // distance the player can be away from something to pick it up
-    private float pickUpDistance = 2.5f; 
+    private float pickUpDistance = 2.5f;
 
     // if the on the of the hand interact buttons is pressed
     // and we are looking at an item that we can pick up
@@ -32,6 +36,33 @@ public class HandsController : MonoBehaviour
     // if we are holding an item 
     // and looking at an item that we can pick up
     // then swap what we have in out hand with the item we are looking at.
+
+    public void PickUpItemInHand(Transform item, Transform handLocationReference)
+    {
+        Rigidbody rb = item.GetComponent<Rigidbody>();
+        rb.useGravity = false;
+        rb.freezeRotation = true;
+        item.GetComponent<BoxCollider>().enabled = false;
+
+    }
+    public void DropItemFromHand(Transform item, Transform hand)
+    {
+        Rigidbody rb = item.GetComponent<Rigidbody>();
+        rb.useGravity = true;
+        rb.freezeRotation = false;
+        item.GetComponent<BoxCollider>().enabled = true;
+    }
+    
+    public void ItemAttachedToMachine(Item item)
+    {
+        int itemID = item.GetItemID();
+        if(TransformInLeftHand.GetComponent<Item>().GetItemID() == item.GetItemID())
+        {
+
+            TransformInLeftHand = null;
+        }
+    }
+
 
     private void Start()
     {
@@ -52,7 +83,7 @@ public class HandsController : MonoBehaviour
                 // we are not holding anything.
                 if(Physics.Raycast(ray, out hit, pickUpDistance))
                 {
-                    MachineController machineController = hit.transform.GetComponent<MachineController>();
+                    Machine machineController = hit.transform.GetComponent<Machine>();
                     if(machineController != null)
                     {
                         // the player has clicked on a part of the machine
@@ -76,49 +107,25 @@ public class HandsController : MonoBehaviour
             {
                 if (Physics.Raycast(ray, out hit, pickUpDistance))
                 {
-                    MachineController machineController = hit.transform.GetComponent<MachineController>();
-                    if (machineController != null)
+                    if(hit.transform.GetComponent<Machine>() != null && TransformInLeftHand.GetComponent<Item>() != null)
                     {
-                        // the player is holding an item and has clicked on an machine which can accept items the player can pick up
-                        // check to see what hit box the player has clicked on.
-                        if(machineController.MachineAcceptedPlayerItem(TransformInLeftHand, hit.collider))
-                        {
-                            TransformInLeftHand = null;
-                        }
+                        MachineItemDataPacket machineItem_DataPacket = new MachineItemDataPacket(hit.transform.GetComponent<Machine>(), TransformInLeftHand.GetComponent<Item>(), hit);
+                        onPlayerInteractWithMachine.Raise(machineItem_DataPacket);
                         return;
-                    }
+                    } 
+
                 }
 
                 // If we are here. Then we are looking at something and holding an item, but we cant do anything with it
                 // so just drop it
                 // to prevent this final action, you should return before reaching this point
-                // We are holding something and need to drop it
                 DropItemFromHand(TransformInLeftHand, LeftHandLocationRef);
                 TransformInLeftHand = null;
             }
         }
         else if (inputManager.RightInteractThisFrame())
         {
-            if(TransformInRightHnad == null)
-            {
-                // we are not holding anything.
-                RaycastHit hit;
-                if(Physics.Raycast(cameraHolder.position, cameraHolder.forward, out hit, 2.5f))
-                {
-                    // check to see if we are looking at something we can pick up
-                    if(hit.transform.tag == "PickUp")
-                    {
-                        PickUpItemInHand(hit.transform, RightHandLocationRef);
-                        TransformInRightHnad = hit.transform;
-                    }
-                }
-            }
-            else if(TransformInRightHnad != null)
-            {
-                // We are holding something and need to drop it
-                DropItemFromHand(TransformInRightHnad, RightHandLocationRef);
-                TransformInRightHnad = null;
-            }
+           
         }
     }
 
@@ -137,19 +144,5 @@ public class HandsController : MonoBehaviour
         }
     }
 
-    private void PickUpItemInHand(Transform item, Transform handLocationReference)
-    {
-        Rigidbody rb = item.GetComponent<Rigidbody>();
-        rb.useGravity = false;
-        rb.freezeRotation = true;
-        item.GetComponent<BoxCollider>().enabled = false;
 
-    }
-    private void DropItemFromHand(Transform item, Transform hand)
-    {
-        Rigidbody rb = item.GetComponent<Rigidbody>();
-        rb.useGravity = true;
-        rb.freezeRotation = false;
-        item.GetComponent<BoxCollider>().enabled = true;
-    }
 }

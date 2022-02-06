@@ -23,6 +23,7 @@ public class Item : MonoBehaviour
     private GameObject currentItem = null;
 
     public void UpdateItemID(int newID) { ID = newID; }
+    public int GetItemID() { return ID; }
 
     public ItemSO GetItemSOData() { return itemData; }
 
@@ -39,24 +40,25 @@ public class Item : MonoBehaviour
             onNewItemCreated.Raise(this);
     }
 
-    public void ChangeItemState(int index)
+    public void ChangeItemState(int stateIndex)
     {
 
-            if(currentIndex != index && index < itemData.ItemStates.Count)
+        if(currentIndex != stateIndex && stateIndex < itemData.ItemStates.Count)
+        {
+            if(currentItem == null)
             {
-                if(currentItem == null)
-                {
-                    currentItem = this.transform.GetChild(0).gameObject;
-                }
-
-                //TODO: ADD this item to a list of stored items so they can be loaded in only once and not multiple times.
-                Destroy(currentItem);
-
-                currentItem = Instantiate(itemData.ItemStates[index], this.transform.position, Quaternion.identity, this.transform);
-
-
-                this.transform.name = "Item - " + itemData.Name + ":" + ID;
-                currentIndex = index;
+                currentItem = this.transform.GetChild(0).gameObject;
             }
+
+            //TODO: ADD this item to a list of stored items so they can be loaded in only once and not multiple times.
+            Destroy(currentItem);
+
+            currentItem = Instantiate(itemData.ItemStates[stateIndex], this.transform.position, Quaternion.identity, this.transform);
+
+
+            this.transform.name = "Item - " + itemData.Name + ":" + ID;
+            currentIndex = stateIndex;
+        }
     }
 }
+

@@ -36,4 +36,15 @@ public class ItemsManager : MonoBehaviour
         // This Item has now been registed and we can send back the ID of the Item.
         item.UpdateItemID(index);
     }
+
+
+    public void UpdateItemStateToGivenState(ItemDataPacket itemData)
+    {
+        
+        if (itemData.Item.GetItemID() < itemsDictionary.Count)
+        {
+            //Debug.Log("Updated item: " + itemData.Item.GetItemID() +" To new state of: " + itemData.NewStateIndex);
+            itemsDictionary[itemData.Item.GetItemID()].ChangeItemState(itemData.NewStateIndex);
+        }
+    }
 }

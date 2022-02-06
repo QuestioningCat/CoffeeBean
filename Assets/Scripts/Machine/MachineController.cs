@@ -16,11 +16,9 @@ public class MachineController : MonoBehaviour
     [SerializeField]
     BoxCollider portafilterCollider = null;
 
-    //[Header("Events")]
-    //[Tooltip("the scriptable object which will raise the event when a portafilter is attached")]
-    //public GameEvent portafilterAttached;
-
-    public VoidEvent OnTestVoidEvent;
+    [Header("Events")]
+    [Tooltip("the scriptable object which will raise the event when a portafilter is attached")]
+    [SerializeField] private ItemStateChangeEvent onPortafilterAttachedToGrinder;
 
     private Transform portafilter = null;
 
@@ -49,12 +47,9 @@ public class MachineController : MonoBehaviour
 
                     if(portafilter != null)
                     {
-                        //if(GameEventHub.EquipmentAttached.ItemThatWasAttached != null)
-                        //    portafilterAttached.Raise();
-                        //else
-                            //Debug.Log("DING");
-
-                        //OnTestVoidEvent.Raise();
+                        Item item = clickedWith.GetComponent<Item>();
+                        ItemDataPacket itemData = new ItemDataPacket(item, onPortafilterAttachedToGrinder.NewState);
+                        onPortafilterAttachedToGrinder.Raise(itemData);
                     }
                     return true;
                 }

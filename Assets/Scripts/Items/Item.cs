@@ -6,8 +6,10 @@ using UnityEngine;
 
 public class Item : MonoBehaviour
 {
+
+
     [Header("Scriptable Object")]
-    [Tooltip("The scriptable object which this scrip will be responcible for")]
+    [Tooltip("The scriptable object template")]
     [SerializeField]
     ItemSO itemData;
 
@@ -17,8 +19,9 @@ public class Item : MonoBehaviour
 
     // The item ID for the Item this is managing.
     private int ID = -1;
-
     private int currentIndex = -1;
+
+    private bool registered = false;
 
     private GameObject currentItem = null;
 
@@ -36,7 +39,7 @@ public class Item : MonoBehaviour
 
     private void OnEnable()
     {
-        if(ID < 0)
+        if(ID < 0 && registered)
             onNewItemCreated.Raise(this);
     }
 

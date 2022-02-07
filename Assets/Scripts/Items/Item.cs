@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
+public enum Hand { LeftHand, RightHand, NoHands }; 
 
 public class Item : MonoBehaviour
 {
@@ -12,12 +12,13 @@ public class Item : MonoBehaviour
     ItemSO itemData;
 
     [Header("Events")]
-    [SerializeField]
-    private ItemEvent onNewItemCreated;
+    [SerializeField] private ItemEvent onNewItemCreated;
 
     // The item ID for the Item this is managing.
     private int ID = -1;
     private int currentIndex = -1;
+
+    private Hand currentHand = Hand.NoHands;
 
     private bool registered = false;
 
@@ -41,6 +42,19 @@ public class Item : MonoBehaviour
         if(ID < 0 && registered)
             onNewItemCreated.Raise(this);
     }
+
+
+    /// <summary>
+    /// Will return the current hand the Item is in
+    /// </summary>
+    /// <returns></returns>
+    public Hand GetHandItemIsIn() { return currentHand; }
+
+    /// <summary>
+    /// Will set the current hand for the item
+    /// </summary>
+    /// <param name="newHand"></param>
+    public void UpdateCurrentHand(Hand newHand) => currentHand = newHand;
 
     public void ChangeItemState(int stateIndex)
     {

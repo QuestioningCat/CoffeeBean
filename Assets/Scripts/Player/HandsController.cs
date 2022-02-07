@@ -18,12 +18,12 @@ public class HandsController : MonoBehaviour
     Transform cameraHolder;
 
     // What the hands are holding
-    private Transform TransformInLeftHand = null;
-    private Transform TransformInRightHnad = null;
+    private Item itemInLeftHand = null;
+    private Item itemInRightHand = null;
 
     [Header("Events")]
     [Tooltip("the scriptable object which will raise the event when the player tries to interact with something")]
-    [SerializeField] private MachineItemEvent onPlayerInteractWithMachine;
+    [SerializeField] private ItemHitboxEvent onPlayerClickedHitbox;
 
     // distance the player can be away from something to pick it up
     private float pickUpDistance = 2.5f;
@@ -37,17 +37,18 @@ public class HandsController : MonoBehaviour
     // and looking at an item that we can pick up
     // then swap what we have in out hand with the item we are looking at.
 
-    public void PickUpItemInHand(Transform item, Transform handLocationReference)
+    private void PickedUpItem(Item item)
     {
-        Rigidbody rb = item.GetComponent<Rigidbody>();
+        Rigidbody rb = item.transform.GetComponent<Rigidbody>();
         rb.useGravity = false;
         rb.freezeRotation = true;
         item.GetComponent<BoxCollider>().enabled = false;
 
     }
-    public void DropItemFromHand(Transform item, Transform hand)
+
+    private void DropItemFromHand(Item item)
     {
-        Rigidbody rb = item.GetComponent<Rigidbody>();
+        Rigidbody rb = item.transform.GetComponent<Rigidbody>();
         rb.useGravity = true;
         rb.freezeRotation = false;
         item.GetComponent<BoxCollider>().enabled = true;
@@ -56,10 +57,34 @@ public class HandsController : MonoBehaviour
     public void ItemAttachedToMachine(Item item)
     {
         int itemID = item.GetItemID();
-        if(TransformInLeftHand.GetComponent<Item>().GetItemID() == item.GetItemID())
+        Debug.Log("DINGDDD: " + item.GetHandItemIsIn().ToString());
+        if(itemInLeftHand.GetComponent<Item>().GetItemID() == item.GetItemID())
         {
+            if(item.GetHandItemIsIn() == Hand.LeftHand)
+            {
+                Debug.Log("DING");
+                itemInLeftHand = null;
+            }
+            else if(item.GetHandItemIsIn() == Hand.RightHand)
+            {
+                itemInRightHand = null;
+            }
+        }
+    }
 
-            TransformInLeftHand = null;
+    public void PlayerPickedUpItem(Item item, Hand hand)
+    {
+        if(hand == Hand.LeftHand)
+        {
+            itemInLeftHand = item;
+            item.UpdateCurrentHand(Hand.LeftHand);
+            PickedUpItem(item);
+        }
+        else if (hand == Hand.RightHand)
+        {
+            itemInRightHand = item;
+            item.UpdateCurrentHand(Hand.RightHand);
+            PickedUpItem(item);
         }
     }
 
@@ -78,49 +103,38 @@ public class HandsController : MonoBehaviour
         {
             RaycastHit hit;
             Ray ray = new Ray(cameraHolder.position, cameraHolder.forward);
-            if(TransformInLeftHand == null)
+            if(itemInLeftHand == null)
             {
                 // we are not holding anything.
                 if(Physics.Raycast(ray, out hit, pickUpDistance))
                 {
-                    Machine machineController = hit.transform.GetComponent<Machine>();
-                    if(machineController != null)
+                    // check to see if we are looking at something we can pick up
+                    if(hit.transform.tag == "PickUp")
                     {
-                        // the player has clicked on a part of the machine
-                        // check to see if there is anything in that part of the machine that can picked up
-                        Transform tempItem = machineController.PlayerPickedUpItem(hit.collider);
-                        if (tempItem != null)
-                        {
-                            // the player picked up the Item from the machine
-                            PickUpItemInHand(tempItem, LeftHandLocationRef);
-                            TransformInLeftHand = tempItem;
-                        }
+                        PlayerPickedUpItem(hit.transform.GetComponent<Item>(), Hand.LeftHand);
+                        return;
                     }
-                    else if(hit.transform.tag == "PickUp") // check to see if we are looking at something we can pick up
+                    else
                     {
-                        PickUpItemInHand(hit.transform, LeftHandLocationRef);
-                        TransformInLeftHand = hit.transform;
+                        onPlayerClickedHitbox.Raise(new ItemHitboxDataPacket(null, hit.collider));
+                        return;
                     }
                 }
             }
-            else if(TransformInLeftHand != null)
+            else if(itemInLeftHand != null)
             {
                 if (Physics.Raycast(ray, out hit, pickUpDistance))
                 {
-                    if(hit.transform.GetComponent<Machine>() != null && TransformInLeftHand.GetComponent<Item>() != null)
-                    {
-                        MachineItemDataPacket machineItem_DataPacket = new MachineItemDataPacket(hit.transform.GetComponent<Machine>(), TransformInLeftHand.GetComponent<Item>(), hit);
-                        onPlayerInteractWithMachine.Raise(machineItem_DataPacket);
-                        return;
-                    } 
+                    onPlayerClickedHitbox.Raise(new ItemHitboxDataPacket(itemInLeftHand.GetComponent<Item>(), hit.collider));
+                    return;
 
                 }
 
                 // If we are here. Then we are looking at something and holding an item, but we cant do anything with it
                 // so just drop it
                 // to prevent this final action, you should return before reaching this point
-                DropItemFromHand(TransformInLeftHand, LeftHandLocationRef);
-                TransformInLeftHand = null;
+                DropItemFromHand(itemInLeftHand);
+                itemInLeftHand = null;
             }
         }
         else if (inputManager.RightInteractThisFrame())
@@ -131,16 +145,16 @@ public class HandsController : MonoBehaviour
 
     private void UpdateHeldItemsPostions()
     {
-        if(TransformInLeftHand != null)
+        if(itemInLeftHand != null)
         {
-            TransformInLeftHand.position = Vector3.Slerp(TransformInLeftHand.position, LeftHandLocationRef.position, 10f * Time.deltaTime);
-            TransformInLeftHand.rotation = LeftHandLocationRef.rotation;
+            itemInLeftHand.transform.position = Vector3.Slerp(itemInLeftHand.transform.position, LeftHandLocationRef.position, 10f * Time.deltaTime);
+            itemInLeftHand.transform.rotation = LeftHandLocationRef.rotation;
         }
 
-        if(TransformInRightHnad != null)
+        if(itemInRightHand != null)
         {
-            TransformInRightHnad.position = Vector3.Slerp(TransformInRightHnad.position, RightHandLocationRef.position, 10f * Time.deltaTime);
-            TransformInRightHnad.rotation = RightHandLocationRef.rotation;
+            itemInRightHand.transform.position = Vector3.Slerp(itemInRightHand.transform.position, RightHandLocationRef.position, 10f * Time.deltaTime);
+            itemInRightHand.transform.rotation = RightHandLocationRef.rotation;
         }
     }
 

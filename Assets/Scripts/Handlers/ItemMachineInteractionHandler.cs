@@ -10,6 +10,7 @@ public class ItemMachineInteractionHandler : MonoBehaviour
 {
     [Header("Events")]
     [SerializeField] private MachineItemEvent onPortafilterAttachedToGrinder;
+    [SerializeField] private MachineItemEvent onPortafilterAttachedToEsspressoMachine;
     [SerializeField] private ItemEvent onItemAttached;
 
 
@@ -24,13 +25,32 @@ public class ItemMachineInteractionHandler : MonoBehaviour
         switch(type)
         {
             case CoffeeEquipmentComponentes.Portafilter:
-                if (clickedWith.GetItemStateIndex() == 0 && clickedOn.IsSpaceAvalable(hitCollider.collider))
+                int stateIndex = clickedWith.GetItemStateIndex();
+                switch(stateIndex)
                 {
-                    //ItemDataPacket itemData = new ItemDataPacket(clickedWith, onPortafilterAttachedToGrinder.NewState);
-                    MachineItemDataPacket machineItem_DataPacket = new MachineItemDataPacket(clickedOn, clickedWith, hitCollider);
-                    onPortafilterAttachedToGrinder.Raise(machineItem_DataPacket);
-                    onItemAttached.Raise(clickedWith);
+                    case 0:
+                        // Only Grinders will accept empty portafilters
+                        if(clickedOn.IsSpaceAvalable(hitCollider.collider))
+                        {
+                            //ItemDataPacket itemData = new ItemDataPacket(clickedWith, onPortafilterAttachedToGrinder.NewState);
+                            MachineItemDataPacket machineItem_DataPacket = new MachineItemDataPacket(clickedOn, clickedWith, hitCollider);
+                            onPortafilterAttachedToGrinder.Raise(machineItem_DataPacket);
+                            onItemAttached.Raise(clickedWith);
+                        }
+                        break;
+                    case 1:
+                        // Only Esspresso machines will accept full but not used portafilters
+                        if (clickedOn.IsSpaceAvalable(hitCollider.collider))
+                        {
+                            MachineItemDataPacket machineItem_DataPacket = new MachineItemDataPacket(clickedOn, clickedWith, hitCollider);
+                            onPortafilterAttachedToEsspressoMachine.Raise(machineItem_DataPacket);
+                            onItemAttached.Raise(clickedWith);
+                        }
+                        break;
+                    default:
+                        break;
                 }
+
 
                 break;
             case CoffeeEquipmentComponentes.MilkJug:

@@ -332,7 +332,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9c73088727c36e94c8550b8c873d36d2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 11.464
+      value: 12.94
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9c73088727c36e94c8550b8c873d36d2, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1189,6 +1189,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   onPortafilterAttachedToGrinder: {fileID: 11400000, guid: 5c3b24ee5852dd44284b4c26c787937d, type: 2}
+  onPortafilterAttachedToEsspressoMachine: {fileID: 11400000, guid: 64c6346274b0510458815bca4d7ac4b6, type: 2}
   onItemAttached: {fileID: 11400000, guid: 1936d763eefe0954a86d07633925147c, type: 2}
 --- !u!4 &769589239
 Transform:
@@ -1776,6 +1777,95 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1123201618}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1001 &1149661233
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1630206225}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 1e8d2ef0f467f98458f0fae24ed16f5d, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 1e8d2ef0f467f98458f0fae24ed16f5d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 12.030612
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 1e8d2ef0f467f98458f0fae24ed16f5d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 5.5195107
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 1e8d2ef0f467f98458f0fae24ed16f5d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -8.893357
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 1e8d2ef0f467f98458f0fae24ed16f5d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 1e8d2ef0f467f98458f0fae24ed16f5d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.00000008146034
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 1e8d2ef0f467f98458f0fae24ed16f5d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.00000004371139
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 1e8d2ef0f467f98458f0fae24ed16f5d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 3.6219773e-15
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 1e8d2ef0f467f98458f0fae24ed16f5d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 1e8d2ef0f467f98458f0fae24ed16f5d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 1e8d2ef0f467f98458f0fae24ed16f5d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 1e8d2ef0f467f98458f0fae24ed16f5d, type: 3}
+      propertyPath: m_Name
+      value: CoffeeMachineNew
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1e8d2ef0f467f98458f0fae24ed16f5d, type: 3}
+--- !u!4 &1149661234 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 1e8d2ef0f467f98458f0fae24ed16f5d, type: 3}
+  m_PrefabInstance: {fileID: 1149661233}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1149661235 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 1e8d2ef0f467f98458f0fae24ed16f5d, type: 3}
+  m_PrefabInstance: {fileID: 1149661233}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1149661236
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1149661235}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a6ef87cecd95dd4faedebb9c9332eb0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  machine_SO: {fileID: 0}
+  onMachineCreated: {fileID: 0}
+  onCoffeeGround: {fileID: 0}
+  CoffeeBeansHopperHitBoxes: {fileID: 0}
+  GrinderHitBoxes: []
+  EsspresssoMachineHitBoxes: []
+  SteamWandHitBoxes: []
+  GrinderAtachmentPoints: []
+  EsspresssoMachineAtachmentPoints: []
+  SteamWandAtachmentPoints: []
 --- !u!1 &1252011048
 GameObject:
   m_ObjectHideFlags: 0
@@ -2308,6 +2398,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 79799019}
+  - {fileID: 1149661234}
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

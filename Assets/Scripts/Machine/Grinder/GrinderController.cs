@@ -39,10 +39,10 @@ public class GrinderController : MonoBehaviour
                 if (attachmentPoint.AttachedItem != null)
                 {
                     ItemHitboxDataPacket dp = new ItemHitboxDataPacket(attachmentPoint.AttachedItem, dataPacket.Hitbox, dataPacket.ClickedHand);
+                    attachmentPoint.UpdateAttachedItem(null);
                     // raise the player pickup event.
                     onPlayerPickedUpItem.Raise(dp);
                 }
-
             }
         }
         else
@@ -51,7 +51,7 @@ public class GrinderController : MonoBehaviour
             if(grinder != null && grinders.Contains(grinder) && dataPacket.Item.GetItemStateIndex() == 0)
             {
                 AttachmentPoint attachmentPoint = GetClickedAttachmentPoit(dataPacket.Hitbox);
-                if(attachmentPoint != null)
+                if(attachmentPoint != null && attachmentPoint.AttachedItem == null)
                 {
                     // raise the attach event
                     onItemAttached.Raise(dataPacket.Item);

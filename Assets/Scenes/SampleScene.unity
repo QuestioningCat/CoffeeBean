@@ -1673,6 +1673,10 @@ PrefabInstance:
       value: CoffeeMachineNew
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 1e8d2ef0f467f98458f0fae24ed16f5d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 1e8d2ef0f467f98458f0fae24ed16f5d, type: 3}
       propertyPath: m_TagString
       value: Interactable
       objectReference: {fileID: 0}
@@ -2699,7 +2703,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 9c73088727c36e94c8550b8c873d36d2, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9c73088727c36e94c8550b8c873d36d2, type: 3}
       propertyPath: m_LocalPosition.x

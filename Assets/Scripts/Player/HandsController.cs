@@ -56,10 +56,9 @@ public class HandsController : MonoBehaviour
     
     public void ItemAttachedToMachine(Item item)
     {
-        int itemID = item.GetItemID();
         //Debug.Log("DINGDDD: " + item.GetHandItemIsIn().ToString());
-        if(itemInLeftHand.GetComponent<Item>().GetItemID() == item.GetItemID())
-        {
+        //if(itemInLeftHand.GetComponent<Item>().GetItemID() == item.GetItemID())
+        //{
             if(item.GetHandItemIsIn() == Hand.LeftHand)
             {
                 itemInLeftHand = null;
@@ -71,7 +70,7 @@ public class HandsController : MonoBehaviour
                 item.UpdateCurrentHand(Hand.NoHands);
 
             }
-        }
+        //}
     }
 
     public void PlayerPickedUpItem(Item item, Hand hand)
@@ -165,7 +164,44 @@ public class HandsController : MonoBehaviour
         }
         else if (inputManager.RightInteractThisFrame())
         {
-           
+            RaycastHit hit;
+            Ray ray = new Ray(cameraHolder.position, cameraHolder.forward);
+            if(itemInRightHand == null)
+            {
+                // we are not holding anything.
+                if(Physics.Raycast(ray, out hit, pickUpDistance))
+                {
+                    // check to see if we are looking at something we can pick up
+                    if(hit.transform.tag == "PickUp")
+                    {
+                        PlayerPickedUpItem(hit.transform.GetComponent<Item>(), Hand.RightHand);
+                        return;
+                    }
+                    else
+                    {
+                        onPlayerClickedHitbox.Raise(new ItemHitboxDataPacket(null, hit.collider, Hand.RightHand));
+                        return;
+                    }
+                }
+            }
+            else if(itemInRightHand != null)
+            {
+                if(Physics.Raycast(ray, out hit, pickUpDistance))
+                {
+                    if(hit.transform.tag == "Interactable")
+                    {
+                        onPlayerClickedHitbox.Raise(new ItemHitboxDataPacket(itemInRightHand.GetComponent<Item>(), hit.collider, Hand.RightHand));
+                        return;
+                    }
+                }
+
+
+                // If we are here. Then we are looking at something and holding an item, but we cant do anything with it
+                // so just drop it
+                // to prevent this final action, you should return before reaching this point
+                DropItemFromHand(itemInRightHand);
+                itemInRightHand = null;
+            }
         }
     }
 

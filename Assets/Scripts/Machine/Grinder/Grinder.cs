@@ -55,8 +55,9 @@ public class Grinder : MonoBehaviour
             for(int i = 0; i < attachmentPointPostions.Count; i++)
             {
                 portafilterAttachmentPoints.Add(new AttachmentPoint(attachmentPointPostions[i], attachmentPointHitBoxes[i]));
-                onNewGrinderCreated.Raise(this);
+                
             }
+            onNewGrinderCreated.Raise(this);
         }
         else
         {

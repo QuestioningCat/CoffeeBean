@@ -261,7 +261,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &53551013
 MonoBehaviour:
@@ -517,7 +517,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &344079498
 PrefabInstance:
@@ -1139,6 +1139,36 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 819891586}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &919395166
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 919395167}
+  m_Layer: 0
+  m_Name: Attachment - Portafitler (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &919395167
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919395166}
+  m_LocalRotation: {x: -0.00000008146034, y: 0.00000004371139, z: -3.6219773e-15, w: 1}
+  m_LocalPosition: {x: -0.001762002, y: 0.0028799975, z: -0.0017333354}
+  m_LocalScale: {x: 0.0066666664, y: 0.0066666664, z: 0.0066666664}
+  m_Children: []
+  m_Father: {fileID: 1149661234}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &929128830
 GameObject:
   m_ObjectHideFlags: 0
@@ -1670,7 +1700,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 1e8d2ef0f467f98458f0fae24ed16f5d, type: 3}
       propertyPath: m_Name
-      value: CoffeeMachineNew
+      value: CoffeeMachine
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 1e8d2ef0f467f98458f0fae24ed16f5d, type: 3}
       propertyPath: m_IsActive
@@ -1687,6 +1717,91 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 1e8d2ef0f467f98458f0fae24ed16f5d, type: 3}
   m_PrefabInstance: {fileID: 1149661233}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1149661235 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 1e8d2ef0f467f98458f0fae24ed16f5d, type: 3}
+  m_PrefabInstance: {fileID: 1149661233}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1149661236
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1149661235}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9297c38d6a12a8419457ab4d08115b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  espressoMachine_SO: {fileID: 11400000, guid: ff65d8d819a5e7242b3f9a118dec00bb, type: 2}
+  portafilterAttachmentPointHitBoxes:
+  - {fileID: 1149661238}
+  - {fileID: 1149661237}
+  steamWandAttachmentPointHitBoxes: []
+  coffeeCupAttachmentPointHitBoxes: []
+  portafilterAttachmentPointPostions:
+  - {fileID: 1232396221}
+  - {fileID: 919395167}
+  steamWandAttachmentPointPostions: []
+  coffeeCupAttachmentPointPostions: []
+  onNewEspressoMachineCreated: {fileID: 11400000, guid: 0d7d6c0660fb9c04c960b4b94e2acd5f, type: 2}
+--- !u!65 &1149661237
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1149661235}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.0024713897, y: 0.0036334556, z: 0.003935532}
+  m_Center: {x: -0.001749391, y: 0.0023779825, z: -0.0014755315}
+--- !u!65 &1149661238
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1149661235}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.0024713897, y: 0.0036334556, z: 0.003935532}
+  m_Center: {x: 0.0017493913, y: 0.0023779825, z: -0.0014755315}
+--- !u!1 &1232396220
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1232396221}
+  m_Layer: 0
+  m_Name: Attachment - Portafitler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1232396221
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1232396220}
+  m_LocalRotation: {x: -0.00000008146034, y: 0.00000004371139, z: -3.6219773e-15, w: 1}
+  m_LocalPosition: {x: 0.001762002, y: 0.0028799975, z: -0.0017333354}
+  m_LocalScale: {x: 0.0066666664, y: 0.0066666664, z: 0.0066666664}
+  m_Children: []
+  m_Father: {fileID: 1149661234}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1252011048
 GameObject:
   m_ObjectHideFlags: 0
@@ -2353,6 +2468,109 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &1710647314
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1710647317}
+  - component: {fileID: 1710647316}
+  - component: {fileID: 1710647315}
+  - component: {fileID: 1710647318}
+  m_Layer: 0
+  m_Name: EspressoMachineManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1710647315
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1710647314}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c9873db5c617eb4ea6f1d0e0a247e88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 0d7d6c0660fb9c04c960b4b94e2acd5f, type: 2}
+  unityEventResponse:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1710647316}
+        m_TargetAssemblyTypeName: EspressoMachineController, Assembly-CSharp
+        m_MethodName: RegisterNewEspressoMachine
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1710647316
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1710647314}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 758246f311c931248b8c91570dcd9f8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onItemAttached: {fileID: 11400000, guid: 1936d763eefe0954a86d07633925147c, type: 2}
+  onPlayerPickedUpItem: {fileID: 11400000, guid: b5f81ee74f6a8a04b9d14450d0f39a8f, type: 2}
+--- !u!4 &1710647317
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1710647314}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 15
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1710647318
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1710647314}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c8b008e003d10f4a87e75ac2554794e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: ea44254cd65484a48ad7a3c7e9ead5f2, type: 2}
+  unityEventResponse:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1710647316}
+        m_TargetAssemblyTypeName: EspressoMachineController, Assembly-CSharp
+        m_MethodName: PlayerClickedOnHitBox
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1742871826
 GameObject:
   m_ObjectHideFlags: 0

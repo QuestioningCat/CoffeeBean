@@ -6,7 +6,6 @@ public class GrinderController : MonoBehaviour
 {
     [Header("Event")]
     [SerializeField] private ItemEvent onItemAttached;
-    //[SerializeField] private ItemEvent onDropItemInHand;
     [SerializeField] private ItemHitboxEvent onPlayerPickedUpItem;
 
 

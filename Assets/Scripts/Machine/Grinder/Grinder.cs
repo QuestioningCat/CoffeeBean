@@ -54,7 +54,7 @@ public class Grinder : MonoBehaviour
         {
             for(int i = 0; i < attachmentPointPostions.Count; i++)
             {
-                portafilterAttachmentPoints.Add(new AttachmentPoint(attachmentPointPostions[i], attachmentPointHitBoxes[i]));
+                portafilterAttachmentPoints.Add(new AttachmentPoint(attachmentPointPostions[i], attachmentPointHitBoxes[i], AttachmentType.Portafilter));
                 
             }
             onNewGrinderCreated.Raise(this);
@@ -66,24 +66,3 @@ public class Grinder : MonoBehaviour
     }
 }
 
-
-public class AttachmentPoint
-{
-    public Transform AttachPoint { get; protected set; }
-    public Item AttachedItem { get; protected set; }
-    public bool InUse { get; protected set; }
-    public BoxCollider Hitbox { get; protected set; }
-
-    public AttachmentPoint(Transform point, BoxCollider hitBox)
-    {
-        this.AttachPoint = point;
-        this.Hitbox = hitBox;
-        this.InUse = false;
-        this.AttachedItem = null;
-    }
-
-    public void UpdateAttachedItem(Item item)
-    {
-        this.AttachedItem = item;
-    }
-}

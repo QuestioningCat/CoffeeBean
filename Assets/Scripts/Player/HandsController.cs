@@ -57,17 +57,19 @@ public class HandsController : MonoBehaviour
     public void ItemAttachedToMachine(Item item)
     {
         int itemID = item.GetItemID();
-        Debug.Log("DINGDDD: " + item.GetHandItemIsIn().ToString());
+        //Debug.Log("DINGDDD: " + item.GetHandItemIsIn().ToString());
         if(itemInLeftHand.GetComponent<Item>().GetItemID() == item.GetItemID())
         {
             if(item.GetHandItemIsIn() == Hand.LeftHand)
             {
-                Debug.Log("DING");
                 itemInLeftHand = null;
+                item.UpdateCurrentHand(Hand.NoHands);
             }
             else if(item.GetHandItemIsIn() == Hand.RightHand)
             {
                 itemInRightHand = null;
+                item.UpdateCurrentHand(Hand.NoHands);
+
             }
         }
     }
@@ -86,6 +88,27 @@ public class HandsController : MonoBehaviour
             item.UpdateCurrentHand(Hand.RightHand);
             PickedUpItem(item);
         }
+    }
+
+    public void PlayerPickedUpItem(ItemHitboxDataPacket dataPacket)
+    {
+        Hand hand = dataPacket.ClickedHand;
+        switch(hand)
+        {
+            case Hand.LeftHand:
+                itemInLeftHand = dataPacket.Item;
+                dataPacket.Item.UpdateCurrentHand(Hand.LeftHand);
+                PickedUpItem(dataPacket.Item);
+                break;
+            case Hand.RightHand:
+                itemInRightHand = dataPacket.Item;
+                dataPacket.Item.UpdateCurrentHand(Hand.RightHand);
+                PickedUpItem(dataPacket.Item);
+                break;
+            default:
+                break;
+        }
+
     }
 
 
@@ -116,19 +139,22 @@ public class HandsController : MonoBehaviour
                     }
                     else
                     {
-                        onPlayerClickedHitbox.Raise(new ItemHitboxDataPacket(null, hit.collider));
+                        onPlayerClickedHitbox.Raise(new ItemHitboxDataPacket(null, hit.collider, Hand.LeftHand));
                         return;
                     }
                 }
             }
             else if(itemInLeftHand != null)
             {
-                if (Physics.Raycast(ray, out hit, pickUpDistance))
+                if(Physics.Raycast(ray, out hit, pickUpDistance))
                 {
-                    onPlayerClickedHitbox.Raise(new ItemHitboxDataPacket(itemInLeftHand.GetComponent<Item>(), hit.collider));
-                    return;
-
+                    if(hit.transform.tag == "Interactable")
+                    {
+                        onPlayerClickedHitbox.Raise(new ItemHitboxDataPacket(itemInLeftHand.GetComponent<Item>(), hit.collider, Hand.LeftHand));
+                        return;
+                    }
                 }
+
 
                 // If we are here. Then we are looking at something and holding an item, but we cant do anything with it
                 // so just drop it

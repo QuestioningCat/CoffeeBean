@@ -16,6 +16,7 @@ public class Grinder : MonoBehaviour
 
     [Header("Events")]
     [SerializeField] private GrinderEvent onNewGrinderCreated;
+    [SerializeField] private ItemStateChangeEvent onGrindCoffeeIntoGrinder;
 
     [SerializeField] private List<AttachmentPoint> portafilterAttachmentPoints = new List<AttachmentPoint>();
 
@@ -26,7 +27,7 @@ public class Grinder : MonoBehaviour
     /// <param name="protafilter"></param>
     public void GrindCoffee(Item protafilter)
     {
-        
+        onGrindCoffeeIntoGrinder.Raise(new ItemDataPacket(protafilter, onGrindCoffeeIntoGrinder.NewState));
     }
 
     public int GetHitboxIndex(Collider hitbox)
@@ -68,7 +69,6 @@ public class Grinder : MonoBehaviour
 public class AttachmentPoint
 {
     public Transform AttachPoint { get; protected set; }
-
     public Item AttachedItem { get; protected set; }
     public bool InUse { get; protected set; }
     public BoxCollider Hitbox { get; protected set; }

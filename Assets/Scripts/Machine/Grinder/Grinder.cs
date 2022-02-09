@@ -12,6 +12,7 @@ public class Grinder : MonoBehaviour
     [SerializeField] private ItemStateChangeEvent onGrindCoffeeIntoGrinder;
 
     [Header("Attachment Points")]
+    // Possible improvment would be to generate this list at runtime to further reduce complexity for the designers.
     [SerializeField] private List<AttachmentPoint> attachmentPoints = new List<AttachmentPoint>();
 
 
@@ -24,6 +25,12 @@ public class Grinder : MonoBehaviour
         onGrindCoffeeIntoGrinder.Raise(new ItemDataPacket(protafilter, onGrindCoffeeIntoGrinder.NewState));
     }
 
+
+    /// <summary>
+    /// Returns the attachment point for the given collider
+    /// </summary>
+    /// <param name="collider"></param>
+    /// <returns></returns>
     public AttachmentPoint GetAttachmentPoint(Collider collider)
     {
         foreach(AttachmentPoint attachmentPoint in attachmentPoints)
@@ -36,6 +43,7 @@ public class Grinder : MonoBehaviour
 
     private void Start()
     {
+        // Register the grind with it's controller
         onNewGrinderCreated.Raise(this);
     }
 }

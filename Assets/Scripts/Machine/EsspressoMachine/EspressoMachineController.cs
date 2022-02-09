@@ -16,15 +16,24 @@ public class EspressoMachineController : MonoBehaviour
         espressoMachines = new List<EspressoMachine>();
     }
 
+    /// <summary>
+    /// Registers the given Espresso Machine to the list of all Espresso Machines
+    /// </summary>
+    /// <param name="machine"></param>
     public void RegisterNewEspressoMachine(EspressoMachine machine)
     {
-        if(!espressoMachines.Contains(machine))
+        if(espressoMachines.Contains(machine))
         {
-            espressoMachines.Add(machine);
-            //Debug.Log("Added new machine to list, Total is: " + espressoMachines.Count);
+            return;
         }
+
+        espressoMachines.Add(machine);
     }
 
+    /// <summary>
+    /// Gets called when the player has clicked on a hitbox, Collider
+    /// </summary>
+    /// <param name="dataPacket"></param>
     public void PlayerClickedOnHitBox(ItemHitboxDataPacket dataPacket)
     {
         EspressoMachine machine = dataPacket.Hitbox.transform.GetComponentInParent<EspressoMachine>();
@@ -34,46 +43,66 @@ public class EspressoMachineController : MonoBehaviour
             // The player has clicked on a grinder but is not holding anything.
             // Find out what part of the machine the player has clicked on.
             AttachmentPoint attachmentPoint = machine.GetAttachmentPoin(dataPacket.Hitbox);
-            if(attachmentPoint != null)
+            if(attachmentPoint == null)
             {
-                // if there is an item attached to that part.
-                if(attachmentPoint.GetAttachedItem() != null)
-                {
-                    ItemHitboxDataPacket dp = new ItemHitboxDataPacket(attachmentPoint.GetAttachedItem(), dataPacket.Hitbox, dataPacket.ClickedHand);
-                    attachmentPoint.UpdateAttachedItem(null);
-                    // raise the player pickup event.
-                    onPlayerPickedUpItem.Raise(dp);
-                }
+                return;
             }
+            // if there is an item attached to that part.
+            if(attachmentPoint.GetAttachedItem() == null)
+            {
+                return;
+            }
+
+            ItemHitboxDataPacket dp = new ItemHitboxDataPacket(attachmentPoint.GetAttachedItem(), dataPacket.Hitbox, dataPacket.ClickedHand);
+            attachmentPoint.UpdateAttachedItem(null);
+            // raise the player pickup event.
+            onPlayerPickedUpItem.Raise(dp);
         }
         else
         {
-            //AttachmentType type = 
 
-            if(machine != null && espressoMachines.Contains(machine))// && dataPacket.Item.GetItemStateIndex() == 1)
+            if(machine == null && !espressoMachines.Contains(machine))
             {
-                AttachmentPoint attachmentPoint = machine.GetAttachmentPoin(dataPacket.Hitbox);
-                switch(attachmentPoint.GetAttachmentType())
-                {
-                    case AttachmentType.Portafilter:
-                        if(attachmentPoint != null && attachmentPoint.GetAttachedItem() == null && dataPacket.Item.GetItemStateIndex() == 1)
-                        {
-                            // raise the attach event
-                            onItemAttached.Raise(dataPacket.Item);
-                            // Update the attachmentPoints attachedItem.
-                            attachmentPoint.UpdateAttachedItem(dataPacket.Item);
-                            // move the Item to the attachment point
-                            dataPacket.Item.transform.position = attachmentPoint.transform.position;
-                            dataPacket.Item.transform.rotation = attachmentPoint.transform.rotation;
-                        }
-                        break;
-                    case AttachmentType.MilkJug:
-                        break;
-                    case AttachmentType.Cup:
-                        break;
-                }
-
+                return;
             }
+
+
+            AttachmentPoint attachmentPoint = machine.GetAttachmentPoin(dataPacket.Hitbox);
+            switch(attachmentPoint.GetAttachmentType())
+            {
+                case AttachmentType.Portafilter:
+                    if(attachmentPoint == null && attachmentPoint.GetAttachedItem() != null)
+                    {
+                        break;
+                    }
+
+                    if (dataPacket.Item.GetItemStateIndex() == 1)
+                        AttachItem(dataPacket.Item, attachmentPoint);
+
+                    break;
+                case AttachmentType.MilkJug:
+                    break;
+                case AttachmentType.Cup:
+                    break;
+            }
+
         }
+    }
+
+
+    /// <summary>
+    /// Attached the given Item to the given AttachmentPoint
+    /// </summary>
+    /// <param name="item"></param>
+    /// <param name="attachmentPoint"></param>
+    private void AttachItem(Item item, AttachmentPoint attachmentPoint)
+    {
+        // raise the attach event
+        onItemAttached.Raise(item);
+        // Update the attachmentPoints attachedItem.
+        attachmentPoint.UpdateAttachedItem(item);
+        // move the Item to the attachment point
+        item.transform.position = attachmentPoint.transform.position;
+        item.transform.rotation = attachmentPoint.transform.rotation;
     }
 }

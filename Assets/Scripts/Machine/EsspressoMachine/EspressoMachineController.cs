@@ -45,7 +45,6 @@ public class EspressoMachineController : MonoBehaviour
                     onPlayerPickedUpItem.Raise(dp);
                 }
             }
-
         }
         else
         {
@@ -61,35 +60,9 @@ public class EspressoMachineController : MonoBehaviour
                     // move the Item to the attachment point
                     dataPacket.Item.transform.position = attachmentPoint.AttachPoint.position;
                     dataPacket.Item.transform.rotation = attachmentPoint.AttachPoint.rotation;
-                    // tell the grinder to start grinding cofee
-                    //machine.GrindCoffee(dataPacket.Item);
                 }
             }
         } 
-            
-
-
-        //if(dataPacket.Item == null)
-        //{
-        //    // The player has clicked on a grinder but is not holding anything.
-        //    // Find out what part of the machine the player has clicked on.
-        //    AttachmentPoint attachmentPoint = GetClickedAttachmentPoit(dataPacket.Hitbox);
-        //    if(attachmentPoint != null)
-        //    {
-        //        // if there is an item attached to that part.
-        //        if(attachmentPoint.AttachedItem != null)
-        //        {
-        //            ItemHitboxDataPacket dp = new ItemHitboxDataPacket(attachmentPoint.AttachedItem, dataPacket.Hitbox, dataPacket.ClickedHand);
-        //            attachmentPoint.UpdateAttachedItem(null);
-        //            // raise the player pickup event.
-        //            //onPlayerPickedUpItem.Raise(dp);
-        //        }
-        //    }
-        //}
-        //else
-        //{
-
-        //}
     }
 
     private AttachmentPoint GetClickedAttachmentPoiit(Collider hitbox)

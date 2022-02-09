@@ -27,7 +27,7 @@ public class EspressoMachineController : MonoBehaviour
 
     public void PlayerClickedOnHitBox(ItemHitboxDataPacket dataPacket)
     {
-        EspressoMachine machine = dataPacket.Hitbox.transform.GetComponent<EspressoMachine>();
+        EspressoMachine machine = dataPacket.Hitbox.transform.GetComponentInParent<EspressoMachine>();
 
         if (dataPacket.Item == null && machine != null)
         {
@@ -48,20 +48,32 @@ public class EspressoMachineController : MonoBehaviour
         }
         else
         {
-            if(machine != null && espressoMachines.Contains(machine) && dataPacket.Item.GetItemStateIndex() == 1)
+            //AttachmentType type = 
+
+            if(machine != null && espressoMachines.Contains(machine))// && dataPacket.Item.GetItemStateIndex() == 1)
             {
                 AttachmentPoint attachmentPoint = machine.GetAttachmentPoin(dataPacket.Hitbox);
-                if(attachmentPoint != null && attachmentPoint.GetAttachedItem() == null)
+                switch(attachmentPoint.GetAttachmentType())
                 {
-                    // raise the attach event
-                    onItemAttached.Raise(dataPacket.Item);
-                    // Update the attachmentPoints attachedItem.
-                    attachmentPoint.UpdateAttachedItem(dataPacket.Item);
-                    // move the Item to the attachment point
-                    dataPacket.Item.transform.position = attachmentPoint.transform.position;
-                    dataPacket.Item.transform.rotation = attachmentPoint.transform.rotation;
+                    case AttachmentType.Portafilter:
+                        if(attachmentPoint != null && attachmentPoint.GetAttachedItem() == null && dataPacket.Item.GetItemStateIndex() == 1)
+                        {
+                            // raise the attach event
+                            onItemAttached.Raise(dataPacket.Item);
+                            // Update the attachmentPoints attachedItem.
+                            attachmentPoint.UpdateAttachedItem(dataPacket.Item);
+                            // move the Item to the attachment point
+                            dataPacket.Item.transform.position = attachmentPoint.transform.position;
+                            dataPacket.Item.transform.rotation = attachmentPoint.transform.rotation;
+                        }
+                        break;
+                    case AttachmentType.MilkJug:
+                        break;
+                    case AttachmentType.Cup:
+                        break;
                 }
+
             }
-        } 
+        }
     }
 }

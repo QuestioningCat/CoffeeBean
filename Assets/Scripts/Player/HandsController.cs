@@ -147,7 +147,6 @@ public class HandsController : MonoBehaviour
             {
                 if(Physics.Raycast(ray, out hit, pickUpDistance))
                 {
-                    Debug.Log("DING");
                     if(hit.transform.tag == "Interactable")
                     {
                         onPlayerClickedHitbox.Raise(new ItemHitboxDataPacket(itemInLeftHand.GetComponent<Item>(), hit.collider, Hand.LeftHand));

@@ -20,7 +20,6 @@ public class GrinderController : MonoBehaviour
         if (!grinders.Contains(grinder))
         {
             grinders.Add(grinder);
-            //Debug.Log("Added new grinder to list, Total is: " + grinders.Count);
         }
     }
 

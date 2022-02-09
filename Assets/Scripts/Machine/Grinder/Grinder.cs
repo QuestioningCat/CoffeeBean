@@ -7,9 +7,6 @@ public class Grinder : MonoBehaviour
     [Header("Template Scriptable Object")]
     [SerializeField] private Grinder_SO grinder_SO;
 
-    [Header("HitBoxes")]
-    public List<Collider> HopperHitBoxes = new List<Collider>();
-
     [Header("Events")]
     [SerializeField] private GrinderEvent onNewGrinderCreated;
     [SerializeField] private ItemStateChangeEvent onGrindCoffeeIntoGrinder;

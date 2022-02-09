@@ -76,6 +76,11 @@ public class EspressoMachineController : MonoBehaviour
                         break;
                     }
 
+                    if ( dataPacket.Item.GetItemSOData().type != CoffeeEquipmentComponentes.Portafilter )
+                    {
+                        break;
+                    }
+
                     if (dataPacket.Item.GetItemStateIndex() == 1)
                         AttachItem(dataPacket.Item, attachmentPoint);
 
@@ -83,6 +88,20 @@ public class EspressoMachineController : MonoBehaviour
                 case AttachmentType.MilkJug:
                     break;
                 case AttachmentType.Cup:
+
+                    if(attachmentPoint == null && attachmentPoint.GetAttachedItem() != null)
+                    {
+                        break;
+                    }
+
+                    if(dataPacket.Item.GetItemSOData().type != CoffeeEquipmentComponentes.Cup)
+                    {
+                        break;
+                    }
+
+                    if(dataPacket.Item.GetItemStateIndex() == 0)
+                        AttachItem(dataPacket.Item, attachmentPoint);
+
                     break;
             }
 

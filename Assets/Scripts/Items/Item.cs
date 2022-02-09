@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum Hand { LeftHand, RightHand, NoHands }; 
+public enum Hand { LeftHand, RightHand, NoHands };
 
+[RequireComponent(typeof(BoxCollider)), RequireComponent(typeof(Rigidbody))]
 public class Item : MonoBehaviour
 {
     [Header("Scriptable Object")]

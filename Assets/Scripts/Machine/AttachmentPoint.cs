@@ -25,7 +25,7 @@ public class AttachmentPoint : MonoBehaviour
     /// <summary>
     /// The Type of Item this attachment point will accept.
     /// </summary>
-    private AttachmentType AttachmentType;
+    [SerializeField] private AttachmentType AttachmentType;
 
     private void Awake()
     {

@@ -30,16 +30,6 @@ public class Grinder : MonoBehaviour
         onGrindCoffeeIntoGrinder.Raise(new ItemDataPacket(protafilter, onGrindCoffeeIntoGrinder.NewState));
     }
 
-    public int GetHitboxIndex(Collider hitbox)
-    {
-        for(int i = 0; i < portafilterAttachmentPoints.Count; i++)
-        {
-            if(hitbox == portafilterAttachmentPoints[i].Hitbox)
-                return i;
-        }
-        return -1;
-    }
-
     public AttachmentPoint GetAttachmentPoin(Collider collider)
     {
         foreach(AttachmentPoint attachmentPoint in portafilterAttachmentPoints)

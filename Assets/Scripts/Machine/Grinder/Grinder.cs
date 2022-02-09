@@ -8,17 +8,14 @@ public class Grinder : MonoBehaviour
     [SerializeField] private Grinder_SO grinder_SO;
 
     [Header("HitBoxes")]
-    [SerializeField] private List<BoxCollider> attachmentPointHitBoxes;
     public List<Collider> HopperHitBoxes = new List<Collider>();
-
-    [Header("Attachment Point Positions")]
-    [SerializeField] private List<Transform> attachmentPointPostions;
 
     [Header("Events")]
     [SerializeField] private GrinderEvent onNewGrinderCreated;
     [SerializeField] private ItemStateChangeEvent onGrindCoffeeIntoGrinder;
 
-    [SerializeField] private List<AttachmentPoint> portafilterAttachmentPoints = new List<AttachmentPoint>();
+    [Header("Attachment Points")]
+    [SerializeField] private List<AttachmentPoint> attachmentPoints = new List<AttachmentPoint>();
 
 
     /// <summary>
@@ -30,11 +27,11 @@ public class Grinder : MonoBehaviour
         onGrindCoffeeIntoGrinder.Raise(new ItemDataPacket(protafilter, onGrindCoffeeIntoGrinder.NewState));
     }
 
-    public AttachmentPoint GetAttachmentPoin(Collider collider)
+    public AttachmentPoint GetAttachmentPoint(Collider collider)
     {
-        foreach(AttachmentPoint attachmentPoint in portafilterAttachmentPoints)
+        foreach(AttachmentPoint attachmentPoint in attachmentPoints)
         {
-            if(attachmentPoint.Hitbox == collider)
+            if(attachmentPoint.GetHitBox() == collider)
                 return attachmentPoint;
         }
         return null;
@@ -42,19 +39,7 @@ public class Grinder : MonoBehaviour
 
     private void Start()
     {
-        if(attachmentPointPostions.Count == attachmentPointHitBoxes.Count)
-        {
-            for(int i = 0; i < attachmentPointPostions.Count; i++)
-            {
-                portafilterAttachmentPoints.Add(new AttachmentPoint(attachmentPointPostions[i], attachmentPointHitBoxes[i], AttachmentType.Portafilter));
-                
-            }
-            onNewGrinderCreated.Raise(this);
-        }
-        else
-        {
-            Debug.LogError("ERROR :: HitBox and AttachmentPoints are the equal for: " + this.transform.name) ;
-        }
+        onNewGrinderCreated.Raise(this);
     }
 }
 

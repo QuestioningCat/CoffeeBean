@@ -128,7 +128,7 @@ public class HandsController : MonoBehaviour
             if(itemInLeftHand == null)
             {
                 // we are not holding anything.
-                if(Physics.Raycast(ray, out hit, pickUpDistance))
+                if( Physics.Raycast(ray, out hit, pickUpDistance) )
                 {
                     // check to see if we are looking at something we can pick up
                     if(hit.transform.tag == "PickUp")
@@ -147,6 +147,7 @@ public class HandsController : MonoBehaviour
             {
                 if(Physics.Raycast(ray, out hit, pickUpDistance))
                 {
+                    Debug.Log("DING");
                     if(hit.transform.tag == "Interactable")
                     {
                         onPlayerClickedHitbox.Raise(new ItemHitboxDataPacket(itemInLeftHand.GetComponent<Item>(), hit.collider, Hand.LeftHand));

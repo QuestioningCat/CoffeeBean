@@ -38,7 +38,7 @@ public class EspressoMachine : MonoBehaviour
     {
         foreach(AttachmentPoint attachmentPoint in allAttachmentPoints)
         {
-            if(attachmentPoint.Hitbox == collider)
+            if(attachmentPoint.GetHitBox() == collider)
                 return attachmentPoint;
         }
         return null;
@@ -55,7 +55,7 @@ public class EspressoMachine : MonoBehaviour
         {
             for(int i = 0; i < portafilterAttachmentPointPostions.Count; i++)
             {
-                allAttachmentPoints.Add(new AttachmentPoint(portafilterAttachmentPointPostions[i], portafilterAttachmentPointHitBoxes[i], AttachmentType.Portafilter));
+                //allAttachmentPoints.Add(new AttachmentPoint(portafilterAttachmentPointPostions[i], portafilterAttachmentPointHitBoxes[i], AttachmentType.Portafilter));
             }
         }
         else
@@ -67,7 +67,7 @@ public class EspressoMachine : MonoBehaviour
         {
             for(int i = 0; i < steamWandAttachmentPointPostions.Count; i++)
             {
-                allAttachmentPoints.Add(new AttachmentPoint(steamWandAttachmentPointPostions[i], steamWandAttachmentPointHitBoxes[i], AttachmentType.MilkJug));
+                //allAttachmentPoints.Add(new AttachmentPoint(steamWandAttachmentPointPostions[i], steamWandAttachmentPointHitBoxes[i], AttachmentType.MilkJug));
             }
         }
         else
@@ -79,7 +79,7 @@ public class EspressoMachine : MonoBehaviour
         {
             for(int i = 0; i < portafilterAttachmentPointPostions.Count; i++)
             {
-                allAttachmentPoints.Add(new AttachmentPoint(coffeeCupAttachmentPointPostions[i], coffeeCupAttachmentPointHitBoxes[i], AttachmentType.Cup));
+                //allAttachmentPoints.Add(new AttachmentPoint(coffeeCupAttachmentPointPostions[i], coffeeCupAttachmentPointHitBoxes[i], AttachmentType.Cup));
             }
         }
         else

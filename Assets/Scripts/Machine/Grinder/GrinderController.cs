@@ -8,7 +8,6 @@ public class GrinderController : MonoBehaviour
     [SerializeField] private ItemEvent onItemAttached;
     [SerializeField] private ItemHitboxEvent onPlayerPickedUpItem;
 
-
     private List<Grinder> grinders;
 
     private void Awake()
@@ -27,19 +26,19 @@ public class GrinderController : MonoBehaviour
 
     public void PlayerClickedOnHitBox(ItemHitboxDataPacket dataPacket)
     {
-        Grinder grinder = dataPacket.Hitbox.transform.GetComponent<Grinder>();
+        Grinder grinder = dataPacket.Hitbox.transform.GetComponentInParent<Grinder>();
         if (dataPacket.Item == null && grinder != null)
         {
             // The player has clicked on a grinder but is not holding anything.
             // Find out what part of the machine the player has clicked on.
-            AttachmentPoint attachmentPoint = grinder.GetAttachmentPoin(dataPacket.Hitbox);
-            if(attachmentPoint != null)
+            AttachmentPoint ap = grinder.GetAttachmentPoint(dataPacket.Hitbox);
+            if(ap != null)
             {
                 // if there is an item attached to that part.
-                if (attachmentPoint.AttachedItem != null)
+                if (ap.GetAttachedItem() != null)
                 {
-                    ItemHitboxDataPacket dp = new ItemHitboxDataPacket(attachmentPoint.AttachedItem, dataPacket.Hitbox, dataPacket.ClickedHand);
-                    attachmentPoint.UpdateAttachedItem(null);
+                    ItemHitboxDataPacket dp = new ItemHitboxDataPacket(ap.GetAttachedItem(), dataPacket.Hitbox, dataPacket.ClickedHand);
+                    ap.UpdateAttachedItem(null);
                     // raise the player pickup event.
                     onPlayerPickedUpItem.Raise(dp);
                 }
@@ -49,16 +48,16 @@ public class GrinderController : MonoBehaviour
         {
             if(grinder != null && grinders.Contains(grinder) && dataPacket.Item.GetItemStateIndex() == 0)
             {
-                AttachmentPoint attachmentPoint = grinder.GetAttachmentPoin(dataPacket.Hitbox);
-                if(attachmentPoint != null && attachmentPoint.AttachedItem == null)
+                AttachmentPoint attachmentPoint = grinder.GetAttachmentPoint(dataPacket.Hitbox);
+                if(attachmentPoint != null && attachmentPoint.GetAttachedItem() == null)
                 {
                     // raise the attach event
                     onItemAttached.Raise(dataPacket.Item);
                     // Update the attachmentPoints attachedItem.
                     attachmentPoint.UpdateAttachedItem(dataPacket.Item);
                     // move the Item to the attachment point
-                    dataPacket.Item.transform.position = attachmentPoint.AttachPoint.position;
-                    dataPacket.Item.transform.rotation = attachmentPoint.AttachPoint.rotation;
+                    dataPacket.Item.transform.position = attachmentPoint.transform.position;
+                    dataPacket.Item.transform.rotation = attachmentPoint.transform.rotation;
                     // tell the grinder to start grinding cofee
                     grinder.GrindCoffee(dataPacket.Item);
                 }

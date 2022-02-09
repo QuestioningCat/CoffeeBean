@@ -37,9 +37,9 @@ public class EspressoMachineController : MonoBehaviour
             if(attachmentPoint != null)
             {
                 // if there is an item attached to that part.
-                if(attachmentPoint.AttachedItem != null)
+                if(attachmentPoint.GetAttachedItem() != null)
                 {
-                    ItemHitboxDataPacket dp = new ItemHitboxDataPacket(attachmentPoint.AttachedItem, dataPacket.Hitbox, dataPacket.ClickedHand);
+                    ItemHitboxDataPacket dp = new ItemHitboxDataPacket(attachmentPoint.GetAttachedItem(), dataPacket.Hitbox, dataPacket.ClickedHand);
                     attachmentPoint.UpdateAttachedItem(null);
                     // raise the player pickup event.
                     onPlayerPickedUpItem.Raise(dp);
@@ -51,15 +51,15 @@ public class EspressoMachineController : MonoBehaviour
             if(machine != null && espressoMachines.Contains(machine) && dataPacket.Item.GetItemStateIndex() == 1)
             {
                 AttachmentPoint attachmentPoint = machine.GetAttachmentPoin(dataPacket.Hitbox);
-                if(attachmentPoint != null && attachmentPoint.AttachedItem == null)
+                if(attachmentPoint != null && attachmentPoint.GetAttachedItem() == null)
                 {
                     // raise the attach event
                     onItemAttached.Raise(dataPacket.Item);
                     // Update the attachmentPoints attachedItem.
                     attachmentPoint.UpdateAttachedItem(dataPacket.Item);
                     // move the Item to the attachment point
-                    dataPacket.Item.transform.position = attachmentPoint.AttachPoint.position;
-                    dataPacket.Item.transform.rotation = attachmentPoint.AttachPoint.rotation;
+                    dataPacket.Item.transform.position = attachmentPoint.transform.position;
+                    dataPacket.Item.transform.rotation = attachmentPoint.transform.rotation;
                 }
             }
         } 

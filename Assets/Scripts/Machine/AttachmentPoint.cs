@@ -4,25 +4,35 @@ using UnityEngine;
 
 public enum AttachmentType { Portafilter, MilkJug, Cup}
 
-public class AttachmentPoint
+public class AttachmentPoint : MonoBehaviour
 {
-    public AttachmentType AttachmentType { get; protected set; }
-    public Transform AttachPoint { get; protected set; }
-    public Item AttachedItem { get; protected set; }
-    public bool InUse { get; protected set; }
-    public BoxCollider Hitbox { get; protected set; }
+    private Item attachedItem;
+    private BoxCollider hitbox;
+    private AttachmentType AttachmentType;
 
-    public AttachmentPoint(Transform point, BoxCollider hitBox, AttachmentType attachmentType)
+    private void Awake()
     {
-        this.AttachPoint = point;
-        this.Hitbox = hitBox;
-        this.AttachmentType = attachmentType;
-        this.InUse = false;
-        this.AttachedItem = null;
+        hitbox = this.GetComponent<BoxCollider>();
+        this.tag = "Interactable";
+    }
+
+    public Item GetAttachedItem()
+    {
+        return attachedItem;
     }
 
     public void UpdateAttachedItem(Item item)
     {
-        this.AttachedItem = item;
+        this.attachedItem = item;
+    }
+
+    public AttachmentType GetAttachmentType()
+    { 
+        return AttachmentType; 
+    }
+
+    public BoxCollider GetHitBox()
+    {
+        return hitbox;
     }
 }

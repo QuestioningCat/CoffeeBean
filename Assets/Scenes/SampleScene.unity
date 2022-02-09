@@ -1745,6 +1745,7 @@ MonoBehaviour:
   - {fileID: 919395167}
   steamWandAttachmentPointPostions: []
   coffeeCupAttachmentPointPostions: []
+  allAttachmentPoints: []
   onNewEspressoMachineCreated: {fileID: 11400000, guid: 0d7d6c0660fb9c04c960b4b94e2acd5f, type: 2}
 --- !u!65 &1149661237
 BoxCollider:
@@ -2968,6 +2969,10 @@ PrefabInstance:
       value: Gridner New (1)
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 9c73088727c36e94c8550b8c873d36d2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 9c73088727c36e94c8550b8c873d36d2, type: 3}
       propertyPath: m_TagString
       value: Interactable
       objectReference: {fileID: 0}
@@ -3030,6 +3035,7 @@ MonoBehaviour:
   - {fileID: 1610207875}
   onNewGrinderCreated: {fileID: 11400000, guid: d5c3b6ef9c54f5d4ca48b8e489cceaf1, type: 2}
   onGrindCoffeeIntoGrinder: {fileID: 11400000, guid: 20c587eb7f5515541bb0117110f6b6c3, type: 2}
+  portafilterAttachmentPoints: []
 --- !u!1 &1954405111
 GameObject:
   m_ObjectHideFlags: 0

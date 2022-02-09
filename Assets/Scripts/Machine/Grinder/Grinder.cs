@@ -40,11 +40,13 @@ public class Grinder : MonoBehaviour
         return -1;
     }
 
-    public AttachmentPoint GetAttachmentPointFromHitboxIndex(int hitboxIndex)
+    public AttachmentPoint GetAttachmentPoin(Collider collider)
     {
-        if(hitboxIndex != -1)
-            return portafilterAttachmentPoints[hitboxIndex];
-
+        foreach(AttachmentPoint attachmentPoint in portafilterAttachmentPoints)
+        {
+            if(attachmentPoint.Hitbox == collider)
+                return attachmentPoint;
+        }
         return null;
     }
 

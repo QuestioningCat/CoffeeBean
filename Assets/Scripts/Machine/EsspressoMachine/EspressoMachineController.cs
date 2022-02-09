@@ -64,22 +64,4 @@ public class EspressoMachineController : MonoBehaviour
             }
         } 
     }
-
-    private AttachmentPoint GetClickedAttachmentPoiit(Collider hitbox)
-    {
-        int index = espressoMachines.IndexOf(hitbox.GetComponent<EspressoMachine>());
-        if(index == -1)
-            return null;
-        //AttachmentType type = espressoMachines[index].GetAttachmentPointFromHitboxIndex(index)
-
-
-        //int hitboxIndex = espressoMachines[Index].GetHitboxIndex(hitbox);
-        //AttachmentPoint attachmentPoint = espressoMachines[Index].GetAttachmentPointFromHitboxIndex(hitboxIndex);
-        //return attachmentPoint;
-        return null;
-    }
-
-
-
-
 }

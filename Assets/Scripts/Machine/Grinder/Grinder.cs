@@ -19,10 +19,12 @@ public class Grinder : MonoBehaviour
     /// <summary>
     /// Grinds coffee from the hopper into the portafilter
     /// </summary>
-    /// <param name="protafilter"></param>
-    public void GrindCoffee(Item protafilter)
+    /// <param name="portafilter"></param>
+    public void GrindCoffee(Item portafilter)
     {
-        onGrindCoffeeIntoGrinder.Raise(new ItemDataPacket(protafilter, onGrindCoffeeIntoGrinder.NewState));
+        if(portafilter.GetItemStateIndex() != 0)
+            return;
+        onGrindCoffeeIntoGrinder.Raise(new ItemDataPacket(portafilter, onGrindCoffeeIntoGrinder.NewState));
     }
 
 

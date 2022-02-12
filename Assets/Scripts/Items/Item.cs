@@ -9,15 +9,17 @@ public class Item : MonoBehaviour
 {
     [Header("Scriptable Object")]
     [Tooltip("The scriptable object template")]
-    [SerializeField]
-    ItemSO itemData;
+    [SerializeField] private ItemSO itemData;
+    
+    [Tooltip("Every Recipes this Item can be used to make")]
+    [SerializeField] private List<TwoCompoentRecipes_SO> recipes;
 
     [Header("Events")]
     [SerializeField] private ItemEvent onNewItemCreated;
 
     // The item ID for the Item this is managing.
     private int ID = -1;
-    private int currentIndex = -1;
+    private int currentStateIndex = -1;
 
     private Hand currentHand = Hand.NoHands;
 
@@ -27,7 +29,7 @@ public class Item : MonoBehaviour
 
     public void UpdateItemID(int newID) { ID = newID; }
     public int GetItemID() { return ID; }
-    public int GetItemStateIndex() { return currentIndex; }
+    public int GetItemStateIndex() { return currentStateIndex; }
     public ItemSO GetItemSOData() { return itemData; }
 
 
@@ -59,13 +61,14 @@ public class Item : MonoBehaviour
 
     public void ChangeItemState(int stateIndex)
     {
-
-        if(currentIndex != stateIndex && stateIndex < itemData.ItemStates.Count)
+        if(currentStateIndex != stateIndex && stateIndex < itemData.ItemStates.Count)
         {
             if(currentItem == null)
             {
                 currentItem = this.transform.GetChild(0).gameObject;
             }
+
+            
 
             //TODO: ADD this item to a list of stored items so they can be loaded in only once and not multiple times.
             Destroy(currentItem);
@@ -73,8 +76,38 @@ public class Item : MonoBehaviour
 
 
             this.transform.name = "Item - " + itemData.Name + ":" + ID;
-            currentIndex = stateIndex;
+            currentStateIndex = stateIndex;
         }
+    }
+
+    /// <summary>
+    /// Checks to see if this item and the given item belong to a recipe
+    /// </summary>
+    /// <param name="otherItem"></param>
+    /// <returns> Returns the recipes these 2 items belong too </returns>
+    public TwoCompoentRecipes_SO IsValidRecipeCombination(Item otherItem)
+    {
+        if(recipes.Count == 0)
+            return null;
+
+        if(otherItem == null)
+            return null;
+        
+        foreach(TwoCompoentRecipes_SO recipe in recipes)
+        {
+                //Debug.Log("DING: " + otherItem.itemData.type);
+
+            if( (recipe.ComponentOne == this.itemData.type && recipe.ComponentOneStartState == this.currentStateIndex) ||
+                (recipe.ComponentOne == otherItem.itemData.type && recipe.ComponentOneStartState == otherItem.currentStateIndex) )
+            {
+                if( (recipe.ComponentTwo == this.itemData.type && recipe.ComponentTwoStartState == this.currentStateIndex) || 
+                    (recipe.ComponentTwo == otherItem.itemData.type && recipe.ComponentTwoStartState == otherItem.currentStateIndex) )
+                {
+                    return recipe;
+                }
+            }
+        }
+        return null;
     }
 }
 

@@ -38,8 +38,6 @@ public class GrinderController : MonoBehaviour
             {
                 return;
             }
-
-
             // if there is an item attached to that part.
             if(ap.GetAttachedItem() == null)
             {

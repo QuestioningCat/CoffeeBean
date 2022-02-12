@@ -27,6 +27,13 @@ public class AttachmentPoint : MonoBehaviour
     /// </summary>
     [SerializeField] private AttachmentType AttachmentType;
 
+
+    /// <summary>
+    /// If this attachment point is paired with another attachment point.
+    /// for example the coffee cup attachmnet point will be paired with the espresso machine group head it is under.
+    /// </summary>
+    [SerializeField] private AttachmentPoint attachmentPointPair;
+    
     private void Awake()
     {
         hitbox = this.GetComponent<BoxCollider>();
@@ -46,6 +53,11 @@ public class AttachmentPoint : MonoBehaviour
     public AttachmentType GetAttachmentType()
     { 
         return AttachmentType; 
+    }
+
+    public AttachmentPoint GetAttachmentPointPair()
+    {
+        return attachmentPointPair ? attachmentPointPair : null;
     }
 
     public BoxCollider GetHitBox()

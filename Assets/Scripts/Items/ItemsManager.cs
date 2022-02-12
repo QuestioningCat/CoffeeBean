@@ -35,10 +35,49 @@ public class ItemsManager : MonoBehaviour
 
     public void UpdateItemStateToGivenState(ItemDataPacket itemData)
     {
-        if (itemData.Item.GetItemID() < itemsDictionary.Count)
-        {
-            //Debug.Log("Updated item: " + itemData.Item.GetItemID() +" To new state of: " + itemData.NewStateIndex);
-            itemsDictionary[itemData.Item.GetItemID()].ChangeItemState(itemData.NewStateIndex);
+        if(itemData.Item.GetItemID() > itemsDictionary.Count)
+        { 
+            return; 
         }
+
+        //Debug.Log("Updated item: " + itemData.Item.GetItemID() +" To new state of: " + itemData.NewStateIndex);
+        itemsDictionary[itemData.Item.GetItemID()].ChangeItemState(itemData.NewStateIndex);
+    }
+
+    public void UpdateItemStateToGivenState(Item item, int newState)
+    {
+        if(item.GetItemID() == -1)
+        {
+            return;
+        }
+        item.ChangeItemState(newState);
+    }
+
+
+    public void NewItemCrafted(CraftingDataPacket dataPacket)
+    {
+        Debug.Log("DINB");
+        // place all items into it's resultent state
+        Item item1 = dataPacket.FirstComponent;
+        Item item2 = dataPacket.SecondComponent;
+
+        if(item1.GetItemSOData().type == dataPacket.Recipe.ComponentOne)
+        {
+            UpdateItemStateToGivenState(item1, dataPacket.Recipe.ComponentOneResultState);
+            UpdateItemStateToGivenState(item2, dataPacket.Recipe.ComponentTwoResultState);
+        }
+        else
+        {
+            UpdateItemStateToGivenState(item1, dataPacket.Recipe.ComponentTwoResultState);
+            UpdateItemStateToGivenState(item2, dataPacket.Recipe.ComponentOneResultState);
+        }
+
+
+        //Item item1 = dataPacket.FirstComponent;
+        //if (dataPacket.Recipe.ComponentOneResultState >= 0 )
+        //    UpdateItemStateToGivenState(item1, dataPacket.Recipe.ComponentOneResultState);
+        //Item item2 = dataPacket.SecondComponent;
+        //if(dataPacket.Recipe.ComponentTwoResultState >= 0)
+        //    UpdateItemStateToGivenState(item2, dataPacket.Recipe.ComponentTwoResultState);
     }
 }

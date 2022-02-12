@@ -10,6 +10,7 @@ public class EspressoMachineController : MonoBehaviour
     [Header("Event")]
     [SerializeField] private ItemEvent onItemAttached;
     [SerializeField] private ItemHitboxEvent onPlayerPickedUpItem;
+    [SerializeField] private CraftingEvent onNewItemCrafted;
 
     private void Awake()
     {
@@ -123,5 +124,16 @@ public class EspressoMachineController : MonoBehaviour
         // move the Item to the attachment point
         item.transform.position = attachmentPoint.transform.position;
         item.transform.rotation = attachmentPoint.transform.rotation;
+        // Check to see it we have made a recipe
+        Item pairItem = attachmentPoint.GetAttachmentPointPair().GetAttachedItem();
+        TwoCompoentRecipes_SO recipe = item.IsValidRecipeCombination(pairItem);
+        if(recipe == null)
+        { 
+            return; 
+        }
+        // The combination is a Recipe Match.
+        // Raied the Item Crafted Event.
+        onNewItemCrafted.Raise(new CraftingDataPacket(item, pairItem, recipe));
+
     }
 }

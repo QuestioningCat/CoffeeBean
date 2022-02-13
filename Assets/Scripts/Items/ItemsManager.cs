@@ -56,7 +56,6 @@ public class ItemsManager : MonoBehaviour
 
     public void NewItemCrafted(CraftingDataPacket dataPacket)
     {
-        Debug.Log("DINB");
         // place all items into it's resultent state
         Item item1 = dataPacket.FirstComponent;
         Item item2 = dataPacket.SecondComponent;
@@ -71,13 +70,5 @@ public class ItemsManager : MonoBehaviour
             UpdateItemStateToGivenState(item1, dataPacket.Recipe.ComponentTwoResultState);
             UpdateItemStateToGivenState(item2, dataPacket.Recipe.ComponentOneResultState);
         }
-
-
-        //Item item1 = dataPacket.FirstComponent;
-        //if (dataPacket.Recipe.ComponentOneResultState >= 0 )
-        //    UpdateItemStateToGivenState(item1, dataPacket.Recipe.ComponentOneResultState);
-        //Item item2 = dataPacket.SecondComponent;
-        //if(dataPacket.Recipe.ComponentTwoResultState >= 0)
-        //    UpdateItemStateToGivenState(item2, dataPacket.Recipe.ComponentTwoResultState);
     }
 }

@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: CoffeeCup
   m_EditorClassIdentifier: 
   Name: Cappuccino
-  type: 3
+  type: 4
   ItemStates:
   - {fileID: 919132149155446097, guid: b41cad5fd6d16c04684c2cf5025c2df3, type: 3}
   - {fileID: 919132149155446097, guid: a78970d14b36383469d83106aa11ad19, type: 3}
+  - {fileID: 919132149155446097, guid: c5cdd242759fb204294b0c8c55f6c72e, type: 3}

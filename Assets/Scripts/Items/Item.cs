@@ -68,8 +68,6 @@ public class Item : MonoBehaviour
                 currentItem = this.transform.GetChild(0).gameObject;
             }
 
-            
-
             //TODO: ADD this item to a list of stored items so they can be loaded in only once and not multiple times.
             Destroy(currentItem);
             currentItem = Instantiate(itemData.ItemStates[stateIndex], this.transform.position, currentItem.transform.rotation, this.transform);
@@ -85,7 +83,7 @@ public class Item : MonoBehaviour
     /// </summary>
     /// <param name="otherItem"></param>
     /// <returns> Returns the recipes these 2 items belong too </returns>
-    public TwoCompoentRecipes_SO IsValidRecipeCombination(Item otherItem)
+    public TwoCompoentRecipes_SO IsValidRecipeCombination(Item otherItem, bool handRecipe)
     {
         if(recipes.Count == 0)
             return null;
@@ -103,7 +101,8 @@ public class Item : MonoBehaviour
                 if( (recipe.ComponentTwo == this.itemData.type && recipe.ComponentTwoStartState == this.currentStateIndex) || 
                     (recipe.ComponentTwo == otherItem.itemData.type && recipe.ComponentTwoStartState == otherItem.currentStateIndex) )
                 {
-                    return recipe;
+                    if ( recipe.HandRecipe == handRecipe)
+                        return recipe;
                 }
             }
         }

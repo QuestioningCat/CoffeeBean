@@ -8,6 +8,9 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Recipe", menuName = "Recipes/2 Component Recipe")]
 public class TwoCompoentRecipes_SO : ScriptableObject
 {
+    // can this recipe be performed in a machine or the players hands?
+    public bool HandRecipe;
+
     // the types of Items needed for this recipe;
     public CoffeeEquipmentComponentes ComponentOne;
     // States the Components before crafting is allowed - Negative value means ingore
@@ -21,9 +24,4 @@ public class TwoCompoentRecipes_SO : ScriptableObject
     public int ComponentTwoResultState;
 
 
-    //// State the Result will be in when the components are valid.
-    //public int ResultState;
-
-    //// prefab for the resultent Item
-    //public GameObject ResultPrefab;
 }

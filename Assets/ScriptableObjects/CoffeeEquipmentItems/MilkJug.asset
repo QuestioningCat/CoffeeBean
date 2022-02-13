@@ -15,4 +15,6 @@ MonoBehaviour:
   Name: 8oz Milk Jug
   type: 1
   ItemStates:
-  - {fileID: 8537465788525482869, guid: ec6889c90d52bcf4da5852b0050e5fa0, type: 3}
+  - {fileID: 919132149155446097, guid: d7514a52ef6e8c54da1e6aca63499839, type: 3}
+  - {fileID: 919132149155446097, guid: 09197f9cee15b1e46b24ded3aa01a129, type: 3}
+  - {fileID: 919132149155446097, guid: b39727967dc0fb042b347411cf6aef6c, type: 3}

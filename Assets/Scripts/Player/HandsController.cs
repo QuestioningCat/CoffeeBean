@@ -24,6 +24,7 @@ public class HandsController : MonoBehaviour
     [Header("Events")]
     [Tooltip("the scriptable object which will raise the event when the player tries to interact with something")]
     [SerializeField] private ItemHitboxEvent onPlayerClickedHitbox;
+    [SerializeField] private CraftingEvent onNewItemCrafted;
 
     // distance the player can be away from something to pick it up
     private float pickUpDistance = 2.5f;
@@ -202,6 +203,17 @@ public class HandsController : MonoBehaviour
                 DropItemFromHand(itemInRightHand);
                 itemInRightHand = null;
             }
+        }
+        else if(inputManager.InteractionButtonDown())
+        {
+            if(itemInLeftHand == null && itemInRightHand == null)
+                return;
+            
+            TwoCompoentRecipes_SO recipe = itemInRightHand.IsValidRecipeCombination(itemInLeftHand, true);
+            if(recipe == null)
+                return;
+
+            onNewItemCrafted.Raise(new CraftingDataPacket(itemInRightHand, itemInLeftHand, recipe));
         }
     }
 

@@ -56,6 +56,11 @@ public class InputManager : MonoBehaviour
         return playerControls.Player.Jump.triggered && playerControls.Player.Jump.ReadValue<float>() == default;
     }
 
+    public bool InteractionButtonDown()
+    {
+        return playerControls.Player.Interact.ReadValue<float>() > 0f;
+    }    
+
     public bool LeftInteractThisFrame()
     {
         return playerControls.Player.LeftHandInteract.triggered;

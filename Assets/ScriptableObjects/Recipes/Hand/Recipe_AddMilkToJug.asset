@@ -10,11 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 870cf42a4c72f36428807147c8a12424, type: 3}
-  m_Name: Recipe_DoubleEspresso
+  m_Name: Recipe_AddMilkToJug
   m_EditorClassIdentifier: 
-  ComponentOne: 0
-  ComponentOneStartState: 1
-  ComponentOneResultState: 2
-  ComponentTwo: 3
+  HandRecipe: 1
+  ComponentOne: 1
+  ComponentOneStartState: 0
+  ComponentOneResultState: 1
+  ComponentTwo: 2
   ComponentTwoStartState: 0
-  ComponentTwoResultState: 1
+  ComponentTwoResultState: 0

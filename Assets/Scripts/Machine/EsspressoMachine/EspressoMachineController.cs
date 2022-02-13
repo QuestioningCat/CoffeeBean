@@ -11,6 +11,7 @@ public class EspressoMachineController : MonoBehaviour
     [SerializeField] private ItemEvent onItemAttached;
     [SerializeField] private ItemHitboxEvent onPlayerPickedUpItem;
     [SerializeField] private CraftingEvent onNewItemCrafted;
+    [SerializeField] private ItemStateChangeEvent onSteamMilk;
 
     private void Awake()
     {
@@ -69,6 +70,10 @@ public class EspressoMachineController : MonoBehaviour
 
 
             AttachmentPoint attachmentPoint = machine.GetAttachmentPoin(dataPacket.Hitbox);
+
+                if(attachmentPoint == null)
+                    return;
+
             switch(attachmentPoint.GetAttachmentType())
             {
                 case AttachmentType.Portafilter:
@@ -87,6 +92,22 @@ public class EspressoMachineController : MonoBehaviour
 
                     break;
                 case AttachmentType.MilkJug:
+                    if(attachmentPoint == null && attachmentPoint.GetAttachedItem() != null)
+                    {
+                        break;
+                    }
+
+                    if(dataPacket.Item.GetItemSOData().type != CoffeeEquipmentComponentes.MilkJug)
+                    {
+                        break;
+                    }
+
+                    if(dataPacket.Item.GetItemStateIndex() == 1)
+                    {
+                        AttachItem(dataPacket.Item, attachmentPoint);
+                        onSteamMilk.Raise(new ItemDataPacket(dataPacket.Item, 2));
+                    }
+
                     break;
                 case AttachmentType.Cup:
 
@@ -125,8 +146,8 @@ public class EspressoMachineController : MonoBehaviour
         item.transform.position = attachmentPoint.transform.position;
         item.transform.rotation = attachmentPoint.transform.rotation;
         // Check to see it we have made a recipe
-        Item pairItem = attachmentPoint.GetAttachmentPointPair().GetAttachedItem();
-        TwoCompoentRecipes_SO recipe = item.IsValidRecipeCombination(pairItem);
+        Item pairItem = attachmentPoint.GetAttachmentPointPair()?.GetAttachedItem();
+        TwoCompoentRecipes_SO recipe = item.IsValidRecipeCombination(pairItem, false);
         if(recipe == null)
         { 
             return; 

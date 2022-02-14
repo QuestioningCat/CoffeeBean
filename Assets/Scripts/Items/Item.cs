@@ -93,13 +93,14 @@ public class Item : MonoBehaviour
         
         foreach(TwoCompoentRecipes_SO recipe in recipes)
         {
-                //Debug.Log("DING: " + otherItem.itemData.type);
+            //Debug.Log("DING: " + otherItem.itemData.type
 
             if( (recipe.ComponentOne == this.itemData.type && recipe.ComponentOneStartState == this.currentStateIndex) ||
                 (recipe.ComponentOne == otherItem.itemData.type && recipe.ComponentOneStartState == otherItem.currentStateIndex) )
             {
-                if( (recipe.ComponentTwo == this.itemData.type && recipe.ComponentTwoStartState == this.currentStateIndex) || 
-                    (recipe.ComponentTwo == otherItem.itemData.type && recipe.ComponentTwoStartState == otherItem.currentStateIndex) )
+
+                if( ((recipe.ComponentTwo == this.itemData.type && recipe.ComponentTwoStartState == this.currentStateIndex) || 
+                    (recipe.ComponentTwo == otherItem.itemData.type && recipe.ComponentTwoStartState == otherItem.currentStateIndex)) )
                 {
                     if ( recipe.HandRecipe == handRecipe)
                         return recipe;

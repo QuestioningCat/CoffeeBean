@@ -45,8 +45,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.23808953, y: 0.23808959, z: 0.5487715}
-  m_Center: {x: -0.0036986023, y: 0.018492982, z: -0.14794374}
+  m_Size: {x: 0.21888754, y: 0.20224588, z: 0.5142118}
+  m_Center: {x: -0.000498265, y: 0.019773118, z: -0.15114371}
 --- !u!54 &471142161790997156
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -76,6 +76,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemData: {fileID: 11400000, guid: 314a2408c09f5b241b6a9c4506d7fd6c, type: 2}
+  recipes: []
   onNewItemCreated: {fileID: 11400000, guid: dd86032f2e1c1c04b9e4b34b78e88d5f, type: 2}
 --- !u!1001 &471142162506765479
 PrefabInstance:

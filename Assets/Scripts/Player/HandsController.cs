@@ -108,7 +108,6 @@ public class HandsController : MonoBehaviour
             default:
                 break;
         }
-
     }
 
 
@@ -211,8 +210,12 @@ public class HandsController : MonoBehaviour
             
             TwoCompoentRecipes_SO recipe = itemInRightHand.IsValidRecipeCombination(itemInLeftHand, true);
             if(recipe == null)
-                return;
-
+            {
+                recipe = itemInLeftHand.IsValidRecipeCombination(itemInRightHand, true);
+                if(recipe == null)
+                    return;
+            }
+            Debug.Log("DING");
             onNewItemCrafted.Raise(new CraftingDataPacket(itemInRightHand, itemInLeftHand, recipe));
         }
     }

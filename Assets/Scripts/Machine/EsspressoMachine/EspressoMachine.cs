@@ -16,6 +16,9 @@ public class EspressoMachine : MonoBehaviour
     {
         foreach(AttachmentPoint attachmentPoint in allAttachmentPoints)
         {
+            if(attachmentPoint == null)
+                continue;
+
             if(attachmentPoint.GetHitBox() == collider)
                 return attachmentPoint;
         }

@@ -82,7 +82,7 @@ public class EspressoMachineController : MonoBehaviour
                         break;
                     }
 
-                    if ( dataPacket.Item.GetItemSOData().Type != CoffeeEquipmentComponentes.Portafilter )
+                    if (!dataPacket.Item.HasTag("Portafilter"))
                     {
                         break;
                     }
@@ -97,7 +97,7 @@ public class EspressoMachineController : MonoBehaviour
                         break;
                     }
 
-                    if(dataPacket.Item.GetItemSOData().Type != CoffeeEquipmentComponentes.MilkJug)
+                    if(!dataPacket.Item.HasTag("MilkJug"))
                     {
                         break;
                     }
@@ -116,7 +116,7 @@ public class EspressoMachineController : MonoBehaviour
                         break;
                     }
 
-                    if(dataPacket.Item.GetItemSOData().Type != CoffeeEquipmentComponentes.Cup)
+                    if(!dataPacket.Item.HasTag("Cup"))
                     {
                         break;
                     }

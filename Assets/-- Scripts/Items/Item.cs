@@ -104,7 +104,7 @@ public class Item : MonoBehaviour
     /// <returns> Returns the recipes these 2 items belong too </returns>
     public TwoCompoentRecipes_SO IsValidTwoComponentRecipeCombination(Item otherItem, bool handRecipe)
     {
-        if(twoComponentRecipes.Count == 0)
+        if(twoComponentRecipes.Count <= 0)
             return null;
 
         if(otherItem == null)

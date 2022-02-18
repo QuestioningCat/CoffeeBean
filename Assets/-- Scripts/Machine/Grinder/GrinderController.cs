@@ -52,7 +52,7 @@ public class GrinderController : MonoBehaviour
         }
         else if (dataPacket.Item != null && grinder != null)
         {
-            if(dataPacket.Item.GetItemSOData().Type != CoffeeEquipmentComponentes.Portafilter)
+            if(!dataPacket.Item.HasTag("Portafilter"))
                 return; 
 
             if(grinder == null && !grinders.Contains(grinder))

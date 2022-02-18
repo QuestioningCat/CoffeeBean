@@ -11,8 +11,6 @@ public class ItemSO : ScriptableObject
 
     public List<Tag_SO> Tags;
 
-    public CoffeeEquipmentComponentes Type;
-
     // all items state are loaded at the same time.
     // but only one is enabled
     // this is done to prevent objects being created and destroyed over and over again,

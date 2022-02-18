@@ -9,13 +9,13 @@ public class HandsController : MonoBehaviour
 
     [Header("Hands")]
     [SerializeField]
-    Transform LeftHandLocationRef;
+    private Transform LeftHandLocationRef;
     [SerializeField]
-    Transform RightHandLocationRef;
+    private Transform RightHandLocationRef;
 
     [Header("Camera")]
     [SerializeField]
-    Transform cameraHolder;
+    private Transform cameraHolder;
 
     // What the hands are holding
     private Item itemInLeftHand = null;
@@ -127,7 +127,7 @@ public class HandsController : MonoBehaviour
         }
         else if(inputManager.InteractionButtonDown())
         {
-            if(itemInLeftHand == null && itemInRightHand == null)
+            if(itemInLeftHand == null || itemInRightHand == null)
                 return;
             
             TwoCompoentRecipes_SO recipe = itemInRightHand.IsValidTwoComponentRecipeCombination(itemInLeftHand, true);

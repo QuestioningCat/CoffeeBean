@@ -78,7 +78,7 @@ MonoBehaviour:
   itemData: {fileID: 11400000, guid: 84bd1d5d60554264e9bf5a80e61bc6d0, type: 2}
   twoComponentRecipes:
   - {fileID: 11400000, guid: 56a8568ba47db034b88261e25cde827d, type: 2}
-  - {fileID: 11400000, guid: 56a8568ba47db034b88261e25cde827d, type: 2}
+  - {fileID: 11400000, guid: ac95e8668cd99cb4ca480b403a7ca047, type: 2}
   oneComponentRecipes: []
   onNewItemCreated: {fileID: 11400000, guid: dd86032f2e1c1c04b9e4b34b78e88d5f, type: 2}
 --- !u!1001 &284674142983320827

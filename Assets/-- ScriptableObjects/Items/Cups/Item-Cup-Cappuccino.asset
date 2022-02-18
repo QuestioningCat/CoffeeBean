@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 266afc1c7728a114e9a955bafb7bbbd8, type: 3}
+  m_Name: Item-Cup-Cappuccino
+  m_EditorClassIdentifier: 
+  Name: Cappuccino
+  Tags:
+  - {fileID: 11400000, guid: 15d7ecc3baa6ed84ea929b3a18dcb6af, type: 2}
+  - {fileID: 11400000, guid: 174e8be88dad32a4986bf398d344dc63, type: 2}
+  - {fileID: 11400000, guid: 37dd800b8f8d819418104089e762e0e5, type: 2}
+  Type: 4
+  ItemStates:
+  - {fileID: 919132149155446097, guid: 7919350e61b3e774e924696dc2acc739, type: 3}
+  - {fileID: 919132149155446097, guid: 66bce0f173f76244b8bca13b3ec97dfc, type: 3}
+  - {fileID: 919132149155446097, guid: e04c16695480ee046bbf1a5a74b4dce5, type: 3}

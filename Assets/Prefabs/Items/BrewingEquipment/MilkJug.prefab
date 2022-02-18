@@ -76,7 +76,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemData: {fileID: 11400000, guid: 903c2a3936fd0774f819af405fc0e312, type: 2}
-  recipes: []
+  twoComponentRecipes:
+  - {fileID: 11400000, guid: 42a2f6ccc07f94341a83a909dffd1ea9, type: 2}
+  oneComponentRecipes: []
   onNewItemCreated: {fileID: 11400000, guid: dd86032f2e1c1c04b9e4b34b78e88d5f, type: 2}
 --- !u!1001 &7318817342913727594
 PrefabInstance:

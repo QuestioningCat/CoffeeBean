@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 266afc1c7728a114e9a955bafb7bbbd8, type: 3}
+  m_Name: Item-Cup-Latte
+  m_EditorClassIdentifier: 
+  Name: Latte
+  Tags:
+  - {fileID: 11400000, guid: 15d7ecc3baa6ed84ea929b3a18dcb6af, type: 2}
+  - {fileID: 11400000, guid: 174e8be88dad32a4986bf398d344dc63, type: 2}
+  - {fileID: 11400000, guid: 97ae698743e2b9b4b8f7ef3ab0f3dbf0, type: 2}
+  Type: 4
+  ItemStates:
+  - {fileID: 919132149155446097, guid: 15ffc9b0c9bcdfe48ad77cb6e587398f, type: 3}
+  - {fileID: 919132149155446097, guid: a965d393a7efc424489f5367581fc417, type: 3}
+  - {fileID: 919132149155446097, guid: 9db9646ba765c3a44b58bad0e74768e3, type: 3}

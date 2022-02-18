@@ -127,33 +127,5 @@ public class Item : MonoBehaviour
         return null;
     }
 
-
-
-    ///// <summary>
-    ///// Checks to see if this item and the given item belong to a recipe
-    ///// </summary>
-    ///// <param name="otherItem"></param>
-    ///// <returns> Returns the recipes this item belong too </returns>
-    //public OneComponentRecipes_OS IsValidOneComponentRecipeCombination(Item otherItem, bool handRecipe)
-    //{
-    //    if(twoComponentRecipes.Count == 0)
-    //        return null;
-
-    //    if(otherItem == null)
-    //        return null;
-
-    //    foreach(OneComponentRecipes_OS recipe in oneComponentRecipes)
-    //    {
-    //        //Debug.Log("DING: " + otherItem.itemData.type
-
-    //        if((recipe.ComponentOne == this.itemData.Type && recipe.ComponentOneStartState == this.currentStateIndex) ||
-    //            (recipe.ComponentOne == otherItem.itemData.Type && recipe.ComponentOneStartState == otherItem.currentStateIndex))
-    //        {
-    //            if(recipe.HandRecipe == handRecipe)
-    //                return recipe;
-    //        }
-    //    }
-    //    return null;
-    //}
 }
 

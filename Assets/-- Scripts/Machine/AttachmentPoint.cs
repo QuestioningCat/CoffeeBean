@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public enum AttachmentType { Portafilter, MilkJug, Cup}
+//public enum AttachmentType { Portafilter, MilkJug, Cup}
 
 /// <summary>
 /// Attachment Points are created in the Unity Edditor.
@@ -25,7 +25,7 @@ public class AttachmentPoint : MonoBehaviour
     /// <summary>
     /// The Type of Item this attachment point will accept.
     /// </summary>
-    [SerializeField] private AttachmentType AttachmentType;
+    [SerializeField] private Tag_SO attachmentType;
 
 
     /// <summary>
@@ -50,9 +50,9 @@ public class AttachmentPoint : MonoBehaviour
         this.attachedItem = item;
     }
 
-    public AttachmentType GetAttachmentType()
+    public Tag_SO GetAttachmentType()
     { 
-        return AttachmentType; 
+        return attachmentType; 
     }
 
     public AttachmentPoint GetAttachmentPointPair()

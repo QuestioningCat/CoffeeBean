@@ -13,8 +13,6 @@ public class Item : MonoBehaviour
 
     [Tooltip("Every Recipes this Item can be used to make")]
     [SerializeField] private List<TwoCompoentRecipes_SO> twoComponentRecipes;
-    [Tooltip("Every Recipes this Item can be used to make")]
-    [SerializeField] private List<OneComponentRecipes_OS> oneComponentRecipes;
 
     [Header("Events")]
     [SerializeField] private ItemEvent onNewItemCreated;
@@ -34,6 +32,17 @@ public class Item : MonoBehaviour
     public int GetItemStateIndex() { return currentStateIndex; }
     public ItemSO GetItemSOData() { return itemData; }
 
+    /// <summary>
+    /// Will set the current hand for the item
+    /// </summary>
+    /// <param name="newHand"></param>
+    public void UpdateCurrentHand(Hand newHand) => currentHand = newHand;
+
+    /// <summary>
+    /// Will return the current hand the Item is in
+    /// </summary>
+    /// <returns></returns>
+    public Hand GetHandItemIsIn() { return currentHand; }
 
     private void Start()
     {
@@ -48,18 +57,6 @@ public class Item : MonoBehaviour
             onNewItemCreated.Raise(this);
     }
 
-
-    /// <summary>
-    /// Will return the current hand the Item is in
-    /// </summary>
-    /// <returns></returns>
-    public Hand GetHandItemIsIn() { return currentHand; }
-
-    /// <summary>
-    /// Will set the current hand for the item
-    /// </summary>
-    /// <param name="newHand"></param>
-    public void UpdateCurrentHand(Hand newHand) => currentHand = newHand;
 
     public void ChangeItemState(int stateIndex)
     {
@@ -127,33 +124,5 @@ public class Item : MonoBehaviour
         return null;
     }
 
-
-
-    ///// <summary>
-    ///// Checks to see if this item and the given item belong to a recipe
-    ///// </summary>
-    ///// <param name="otherItem"></param>
-    ///// <returns> Returns the recipes this item belong too </returns>
-    //public OneComponentRecipes_OS IsValidOneComponentRecipeCombination(Item otherItem, bool handRecipe)
-    //{
-    //    if(twoComponentRecipes.Count == 0)
-    //        return null;
-
-    //    if(otherItem == null)
-    //        return null;
-
-    //    foreach(OneComponentRecipes_OS recipe in oneComponentRecipes)
-    //    {
-    //        //Debug.Log("DING: " + otherItem.itemData.type
-
-    //        if((recipe.ComponentOne == this.itemData.Type && recipe.ComponentOneStartState == this.currentStateIndex) ||
-    //            (recipe.ComponentOne == otherItem.itemData.Type && recipe.ComponentOneStartState == otherItem.currentStateIndex))
-    //        {
-    //            if(recipe.HandRecipe == handRecipe)
-    //                return recipe;
-    //        }
-    //    }
-    //    return null;
-    //}
 }
 

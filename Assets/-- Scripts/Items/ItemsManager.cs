@@ -58,17 +58,25 @@ public class ItemsManager : MonoBehaviour
     {
         // place all items into it's resultent state
         Item item1 = dataPacket.FirstComponent;
-        Item item2 = dataPacket.SecondComponent;
+        if(dataPacket.TwoComponentRecipe != null)
+        {
+            Item item2 = dataPacket.SecondComponent;
 
-        if(item1.HasTag(dataPacket.Recipe.ComponentOne.name))
-        {
-            UpdateItemStateToGivenState(item1, dataPacket.Recipe.ComponentOneResultState);
-            UpdateItemStateToGivenState(item2, dataPacket.Recipe.ComponentTwoResultState);
+            if(item1.HasTag(dataPacket.TwoComponentRecipe.ComponentOne.name))
+            {
+                UpdateItemStateToGivenState(item1, dataPacket.TwoComponentRecipe.ComponentOneResultState);
+                UpdateItemStateToGivenState(item2, dataPacket.TwoComponentRecipe.ComponentTwoResultState);
+            }
+            else
+            {
+                UpdateItemStateToGivenState(item1, dataPacket.TwoComponentRecipe.ComponentTwoResultState);
+                UpdateItemStateToGivenState(item2, dataPacket.TwoComponentRecipe.ComponentOneResultState);
+            }
         }
-        else
+        else if (dataPacket.OneComponentRecipe != null)
         {
-            UpdateItemStateToGivenState(item1, dataPacket.Recipe.ComponentTwoResultState);
-            UpdateItemStateToGivenState(item2, dataPacket.Recipe.ComponentOneResultState);
+            
+            UpdateItemStateToGivenState(item1, dataPacket.OneComponentRecipe.ComponentOneResultState);
         }
     }
 }

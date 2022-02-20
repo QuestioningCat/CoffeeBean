@@ -9,10 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 353f78f623196f64d9a639f6350fe106, type: 3}
-  m_Name: Recipe_ClearPortafilter
+  m_Script: {fileID: 11500000, guid: 79a4f2d2866381b40867d1c35bf7c216, type: 3}
+  m_Name: PortafilterHolder
   m_EditorClassIdentifier: 
-  HandRecipe: 0
-  ComponentOne: {fileID: 11400000, guid: dbc0fe4c07225c1478e09c1fe1b03ca9, type: 2}
-  ComponentOneStartState: 2
-  ComponentOneResultState: 0

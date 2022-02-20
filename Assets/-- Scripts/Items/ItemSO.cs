@@ -2,8 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum CoffeeEquipmentComponentes { Portafilter, MilkJug, MilkCarton, CoffeeBag, Cup};
-
 [CreateAssetMenu(fileName = "Coffee Component Item", menuName = "Coffee/Items/Coffee Component Item")]
 public class ItemSO : ScriptableObject
 {

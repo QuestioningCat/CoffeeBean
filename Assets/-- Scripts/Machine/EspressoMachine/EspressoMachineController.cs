@@ -74,9 +74,9 @@ public class EspressoMachineController : MonoBehaviour
                 if(attachmentPoint == null)
                     return;
 
-            switch(attachmentPoint.GetAttachmentType())
+            switch(attachmentPoint.GetAttachmentType().name)
             {
-                case AttachmentType.Portafilter:
+                case "GroupHead":
                     if(attachmentPoint == null && attachmentPoint.GetAttachedItem() != null)
                     {
                         break;
@@ -91,7 +91,7 @@ public class EspressoMachineController : MonoBehaviour
                         AttachItem(dataPacket.Item, attachmentPoint);
 
                     break;
-                case AttachmentType.MilkJug:
+                case "SteamWand":
                     if(attachmentPoint == null && attachmentPoint.GetAttachedItem() != null)
                     {
                         break;
@@ -109,7 +109,7 @@ public class EspressoMachineController : MonoBehaviour
                     }
 
                     break;
-                case AttachmentType.Cup:
+                case "DripTray":
 
                     if(attachmentPoint == null && attachmentPoint.GetAttachedItem() != null)
                     {

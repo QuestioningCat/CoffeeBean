@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7318817343549527253}
   - component: {fileID: 7318817343549527252}
   m_Layer: 0
-  m_Name: MilkJug
+  m_Name: MilkJug-Small
   m_TagString: PickUp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -61,8 +61,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.20254265, y: 0.21361928, z: 0.20222494}
-  m_Center: {x: 0.002097033, y: 0.10658199, z: 0.0030020028}
+  m_Size: {x: 0.15319899, y: 0.1612546, z: 0.18107727}
+  m_Center: {x: 0.002600506, y: 0.080399655, z: -0.0075718313}
 --- !u!114 &7318817343549527252
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -78,7 +78,6 @@ MonoBehaviour:
   itemData: {fileID: 11400000, guid: 903c2a3936fd0774f819af405fc0e312, type: 2}
   twoComponentRecipes:
   - {fileID: 11400000, guid: 42a2f6ccc07f94341a83a909dffd1ea9, type: 2}
-  oneComponentRecipes: []
   onNewItemCreated: {fileID: 11400000, guid: dd86032f2e1c1c04b9e4b34b78e88d5f, type: 2}
 --- !u!1001 &7318817342913727594
 PrefabInstance:

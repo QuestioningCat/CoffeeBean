@@ -786,7 +786,7 @@ GameObject:
   - component: {fileID: 501872284}
   - component: {fileID: 501872283}
   m_Layer: 0
-  m_Name: Attachment - Cup
+  m_Name: Attachment - DripTray
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -831,7 +831,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aec0e5c984ecb9344affd2f8c9cdf180, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AttachmentType: 2
+  attachmentType: {fileID: 11400000, guid: 6e3c286d57d7b1a42ad5f6998ce55d47, type: 2}
   attachmentPointPair: {fileID: 1232396223}
 --- !u!1 &531473444
 GameObject:
@@ -877,7 +877,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aec0e5c984ecb9344affd2f8c9cdf180, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AttachmentType: 1
+  attachmentType: {fileID: 11400000, guid: 75ebf7c2c08bdca47b6b9f6577994847, type: 2}
   attachmentPointPair: {fileID: 0}
 --- !u!65 &531473447
 BoxCollider:
@@ -1571,7 +1571,7 @@ GameObject:
   - component: {fileID: 839592293}
   - component: {fileID: 839592292}
   m_Layer: 0
-  m_Name: Attachment - Cup (1)
+  m_Name: Attachment - DripTray
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1616,7 +1616,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aec0e5c984ecb9344affd2f8c9cdf180, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AttachmentType: 2
+  attachmentType: {fileID: 11400000, guid: 6e3c286d57d7b1a42ad5f6998ce55d47, type: 2}
   attachmentPointPair: {fileID: 1454343761}
 --- !u!1 &929128830
 GameObject:
@@ -2176,9 +2176,6 @@ MonoBehaviour:
   interactionItemData_SO: {fileID: 11400000, guid: b7e3166d208eb2245a00f16e3ff7452f, type: 2}
   recipe: {fileID: 11400000, guid: ec4bac99915226041b07c350ba056fe0, type: 2}
   onNewInteractionObjectCreated: {fileID: 11400000, guid: 1dca1066df141b04f94fd890f961faac, type: 2}
-  Tags:
-  - {fileID: 11400000, guid: da2c87e047148e648b073fe6cc1be8cd, type: 2}
-  - {fileID: 11400000, guid: 5fe164fccc994904f85dc648d6786acd, type: 2}
 --- !u!65 &1143074039
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2345,7 +2342,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aec0e5c984ecb9344affd2f8c9cdf180, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AttachmentType: 1
+  attachmentType: {fileID: 11400000, guid: 75ebf7c2c08bdca47b6b9f6577994847, type: 2}
   attachmentPointPair: {fileID: 0}
 --- !u!65 &1222325413
 BoxCollider:
@@ -2372,7 +2369,7 @@ GameObject:
   - component: {fileID: 1232396223}
   - component: {fileID: 1232396222}
   m_Layer: 0
-  m_Name: Attachment - Portafitler
+  m_Name: Attachment - GroupHead
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2417,7 +2414,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aec0e5c984ecb9344affd2f8c9cdf180, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AttachmentType: 0
+  attachmentType: {fileID: 11400000, guid: edddcbf3f6acd3d4c976b073b4d052d3, type: 2}
   attachmentPointPair: {fileID: 1232396223}
 --- !u!1 &1252011048
 GameObject:
@@ -2759,7 +2756,7 @@ GameObject:
   - component: {fileID: 1454343761}
   - component: {fileID: 1454343762}
   m_Layer: 0
-  m_Name: Attachment - Portafitler (1)
+  m_Name: Attachment - GroupHead
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2777,7 +2774,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aec0e5c984ecb9344affd2f8c9cdf180, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AttachmentType: 0
+  attachmentType: {fileID: 11400000, guid: edddcbf3f6acd3d4c976b073b4d052d3, type: 2}
   attachmentPointPair: {fileID: 1454343761}
 --- !u!65 &1454343762
 BoxCollider:
@@ -2985,7 +2982,7 @@ GameObject:
   - component: {fileID: 1610207877}
   - component: {fileID: 1610207876}
   m_Layer: 0
-  m_Name: Attachment - Portafilter
+  m_Name: Attachment - PortafilterHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3030,7 +3027,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aec0e5c984ecb9344affd2f8c9cdf180, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AttachmentType: 0
+  attachmentType: {fileID: 11400000, guid: bdadd766be4c4d7498e07bd4fdfb8132, type: 2}
   attachmentPointPair: {fileID: 0}
 --- !u!1 &1630206224
 GameObject:

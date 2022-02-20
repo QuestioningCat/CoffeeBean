@@ -147,6 +147,8 @@ public class HandsController : MonoBehaviour
         Ray ray = new Ray(cameraHolder.position, cameraHolder.forward);
         if(itemInHand == null)
         {
+            
+
             // we are not holding anything.
             if(Physics.Raycast(ray, out hit, pickUpDistance))
             {
@@ -174,6 +176,12 @@ public class HandsController : MonoBehaviour
                 }
 
                 if(hit.transform.GetComponentInParent<EspressoMachine>() != null && hit.transform.GetComponentInParent<EspressoMachine>().GetTag("Usable"))
+                {
+                    onPlayerClickedHitbox.Raise(new ItemHitboxDataPacket(itemInHand.GetComponent<Item>(), hit.collider, hand));
+                    return;
+                }
+                // using get component as interaction Items do not work off of attachment points like the grinder and espresso machine, who do use attachment points.
+                if(hit.transform.GetComponent<InteractionObject>() != null && hit.transform.GetComponent<InteractionObject>().GetTag("InteractionItem"))
                 {
                     onPlayerClickedHitbox.Raise(new ItemHitboxDataPacket(itemInHand.GetComponent<Item>(), hit.collider, hand));
                     return;

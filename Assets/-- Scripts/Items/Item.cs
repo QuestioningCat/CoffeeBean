@@ -13,8 +13,6 @@ public class Item : MonoBehaviour
 
     [Tooltip("Every Recipes this Item can be used to make")]
     [SerializeField] private List<TwoCompoentRecipes_SO> twoComponentRecipes;
-    [Tooltip("Every Recipes this Item can be used to make")]
-    [SerializeField] private List<OneComponentRecipes_OS> oneComponentRecipes;
 
     [Header("Events")]
     [SerializeField] private ItemEvent onNewItemCreated;
@@ -34,6 +32,17 @@ public class Item : MonoBehaviour
     public int GetItemStateIndex() { return currentStateIndex; }
     public ItemSO GetItemSOData() { return itemData; }
 
+    /// <summary>
+    /// Will set the current hand for the item
+    /// </summary>
+    /// <param name="newHand"></param>
+    public void UpdateCurrentHand(Hand newHand) => currentHand = newHand;
+
+    /// <summary>
+    /// Will return the current hand the Item is in
+    /// </summary>
+    /// <returns></returns>
+    public Hand GetHandItemIsIn() { return currentHand; }
 
     private void Start()
     {
@@ -48,18 +57,6 @@ public class Item : MonoBehaviour
             onNewItemCreated.Raise(this);
     }
 
-
-    /// <summary>
-    /// Will return the current hand the Item is in
-    /// </summary>
-    /// <returns></returns>
-    public Hand GetHandItemIsIn() { return currentHand; }
-
-    /// <summary>
-    /// Will set the current hand for the item
-    /// </summary>
-    /// <param name="newHand"></param>
-    public void UpdateCurrentHand(Hand newHand) => currentHand = newHand;
 
     public void ChangeItemState(int stateIndex)
     {

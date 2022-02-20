@@ -12,7 +12,7 @@ public class OneComponentRecipes_OS : ScriptableObject
     public bool HandRecipe;
 
     // the types of Items needed for this recipe;
-    public CoffeeEquipmentComponentes ComponentOne;
+    public Tag_SO ComponentOne;
     // States the Components before crafting is allowed - Negative value means ingore
     public int ComponentOneStartState;
     // States of the components after crafting - Negative value means ignore

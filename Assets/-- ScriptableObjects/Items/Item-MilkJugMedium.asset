@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 266afc1c7728a114e9a955bafb7bbbd8, type: 3}
-  m_Name: Item-MilkJug
+  m_Name: Item-MilkJugMedium
   m_EditorClassIdentifier: 
-  Name: 8oz Milk Jug
+  Name: 16oz milk Jug
   Tags:
   - {fileID: 11400000, guid: 15d7ecc3baa6ed84ea929b3a18dcb6af, type: 2}
   - {fileID: 11400000, guid: 244c2f7f9e1fb66489b4853d01166db7, type: 2}
-  Type: 1
+  - {fileID: 11400000, guid: 0b4680eef51e1114f8d6689db155656f, type: 2}
   ItemStates:
-  - {fileID: 919132149155446097, guid: d7514a52ef6e8c54da1e6aca63499839, type: 3}
-  - {fileID: 919132149155446097, guid: 09197f9cee15b1e46b24ded3aa01a129, type: 3}
-  - {fileID: 919132149155446097, guid: b39727967dc0fb042b347411cf6aef6c, type: 3}
+  - {fileID: 919132149155446097, guid: 9014efab41cfa6348ac7ec95a3d22c77, type: 3}
+  - {fileID: 919132149155446097, guid: 4001f548ce7e18543971cb2986b96d72, type: 3}
+  - {fileID: 919132149155446097, guid: e5fb36740b7c8694eb8a3d0bcc2fa087, type: 3}

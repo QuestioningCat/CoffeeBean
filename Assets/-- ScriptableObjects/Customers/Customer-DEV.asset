@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21420595971ba004d93fa54693f9ded0, type: 3}
+  m_Name: Customer-DEV
+  m_EditorClassIdentifier: 
+  CustomerModel: {fileID: 1623175200998901299, guid: af6ab0feb6f69ce418a15552ff934eec, type: 3}
+  Name: DEV Chan

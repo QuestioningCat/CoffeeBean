@@ -1,0 +1,1 @@
+public class CustomerListener : BaseGameEventListener<CustomerDataPacket, CustomerEvent, UintyCustomerEvent> { }

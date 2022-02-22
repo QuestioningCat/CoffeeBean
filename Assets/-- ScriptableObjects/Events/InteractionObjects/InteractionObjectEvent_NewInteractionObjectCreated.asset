@@ -9,6 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b912e4fba31a236409f79c8927c110e9, type: 3}
-  m_Name: GameEvent_NewGrinderCreated
+  m_Script: {fileID: 11500000, guid: d148d972e083d314aba5ae4a86528a6c, type: 3}
+  m_Name: InteractionObjectEvent_NewInteractionObjectCreated
   m_EditorClassIdentifier: 

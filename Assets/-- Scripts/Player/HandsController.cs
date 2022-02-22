@@ -169,23 +169,29 @@ public class HandsController : MonoBehaviour
         {
             if(Physics.Raycast(ray, out hit, pickUpDistance))
             {
+
                 if(hit.transform.GetComponentInParent<Grinder>() != null && hit.transform.GetComponentInParent<Grinder>().GetTag("Usable"))
                 {
                     onPlayerClickedHitbox.Raise(new ItemHitboxDataPacket(itemInHand.GetComponent<Item>(), hit.collider, hand));
                     return;
                 }
-
-                if(hit.transform.GetComponentInParent<EspressoMachine>() != null && hit.transform.GetComponentInParent<EspressoMachine>().GetTag("Usable"))
+                else if(hit.transform.GetComponentInParent<EspressoMachine>() != null && hit.transform.GetComponentInParent<EspressoMachine>().GetTag("Usable"))
+                {
+                    onPlayerClickedHitbox.Raise(new ItemHitboxDataPacket(itemInHand.GetComponent<Item>(), hit.collider, hand));
+                    return;
+                }
+                else if(hit.transform.GetComponentInParent<DeliveryController>() != null && hit.transform.GetComponentInParent<DeliveryController>().GetTag("DeliveryArea"))
                 {
                     onPlayerClickedHitbox.Raise(new ItemHitboxDataPacket(itemInHand.GetComponent<Item>(), hit.collider, hand));
                     return;
                 }
                 // using get component as interaction Items do not work off of attachment points like the grinder and espresso machine, who do use attachment points.
-                if(hit.transform.GetComponent<InteractionObject>() != null && hit.transform.GetComponent<InteractionObject>().GetTag("InteractionItem"))
+                else if(hit.transform.GetComponent<InteractionObject>() != null && hit.transform.GetComponent<InteractionObject>().GetTag("InteractionItem"))
                 {
                     onPlayerClickedHitbox.Raise(new ItemHitboxDataPacket(itemInHand.GetComponent<Item>(), hit.collider, hand));
                     return;
                 }
+
             }
 
 

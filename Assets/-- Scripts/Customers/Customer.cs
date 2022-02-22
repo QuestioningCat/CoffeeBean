@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Customer : MonoBehaviour
 {
-    private CustomersCurrentState currentState;
+    public CustomerState CurrentState { get; protected set; }
 
     [SerializeField] private SpeechBubble speechBubble;
 
@@ -26,6 +26,11 @@ public class Customer : MonoBehaviour
 
         speechBubble.transform.gameObject.SetActive(true);
         speechBubble.UpdateSpeechBouble(this.order.CoffeeOrder.Icon, this.order.CoffeeOrder.OrderName, GameObject.FindGameObjectWithTag("Player")?.transform);
+    }
+
+    public void UpdateCustomerCurrentState(CustomerState state)
+    {
+        CurrentState = state;
     }
     
 }

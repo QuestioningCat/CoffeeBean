@@ -16,3 +16,4 @@ MonoBehaviour:
   Tags:
   - {fileID: 11400000, guid: 3959f7d19c35d2847a420e2d204f0050, type: 2}
   Icon: {fileID: 21300000, guid: 68129b569ef604042b582b4aed0ffd2c, type: 3}
+  OrderStateIndex: 1

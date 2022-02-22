@@ -8,11 +8,14 @@ using UnityEngine;
 /// Only one customer can be in the Ordering state at a time.
 /// Idel is a default state where they will just stand or wonder around the shop.
 /// </summary>
-public enum CustomersCurrentState { Idel, WaitingToOrder, Ordering, Leaving, Drinking}
+public enum CustomerState { Idel, WaitingToOrder, Ordered, Leaving, Drinking}
 
 
 public class CustomerController : MonoBehaviour
 {
+    [SerializeField] private CustomerEvent onCustomerPlacedOrder;
+
+
     // List of all customers in the bulding.
     private List<Customer> customers;
 
@@ -54,6 +57,23 @@ public class CustomerController : MonoBehaviour
 
         Order_SO orderSelection = CoffeeMenue[Mathf.RoundToInt(Random.Range(0,CoffeeMenue.Count))];
         CustomerOrder order = new CustomerOrder(orderSelection, Time.time);
+
+        customer.UpdateCustomerCurrentState(CustomerState.Ordered);
         customer.UpdateCustomersOrder(order);
+        onCustomerPlacedOrder.Raise(new CustomerDataPacket(customer));
+    }
+
+
+    // Find out what meuneItem this item belongs to.
+    public void FindItemOnMenue(Item item)
+    {
+        // see if the given item is on the menue.
+        for(int itemTagIndex = 0; itemTagIndex < item.GetItemSOData().Tags.Count; itemTagIndex++)
+        {
+
+        }
+
+
+
     }
 }

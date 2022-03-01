@@ -2,7 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IGameEventListener<T>
+namespace CoffeeBean.Event
 {
-    void OnEventRaised(T item);
+
+    public interface IGameEventListener<T>
+    {
+        void OnEventRaised(T item);
+    }
 }

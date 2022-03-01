@@ -1,4 +1,7 @@
+using CoffeeBean;
 using UnityEngine.Events;
 
-[System.Serializable] public class UnityItemStateChangeEvent : UnityEvent<ItemDataPacket> { }
-
+namespace CoffeeBean.Event
+{
+    [System.Serializable] public class UnityItemStateChangeEvent : UnityEvent<ItemDataPacket> { }
+}

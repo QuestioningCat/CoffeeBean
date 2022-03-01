@@ -1,4 +1,7 @@
 using UnityEngine.Events;
 
-[System.Serializable] public class UintyInteractionObjectEvent : UnityEvent<InteractionObject> { }
+namespace CoffeeBean.Event
+{
+    [System.Serializable] public class UintyInteractionObjectEvent : UnityEvent<InteractionObject> { }
+}
 

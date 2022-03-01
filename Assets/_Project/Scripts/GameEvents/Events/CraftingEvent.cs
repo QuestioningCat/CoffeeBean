@@ -1,4 +1,8 @@
+using CoffeeBean;
 using UnityEngine;
 
-[CreateAssetMenu(fileName ="New Crafting Event", menuName = "Game Events/DataPacket/Crafting Event")]
-public class CraftingEvent : BaseGameEvent<CraftingDataPacket> { }
+namespace CoffeeBean.Event
+{
+    [CreateAssetMenu(fileName = "New Crafting Event", menuName = "Game Events/DataPacket/Crafting Event")]
+    public class CraftingEvent : BaseGameEvent<CraftingDataPacket> { }
+}

@@ -1,4 +1,6 @@
 using UnityEngine.Events;
 
-[System.Serializable] public class UnityVoidEvent : UnityEvent<Void> { }
-
+namespace CoffeeBean.Event
+{
+    [System.Serializable] public class UnityVoidEvent : UnityEvent<Void> { }
+}

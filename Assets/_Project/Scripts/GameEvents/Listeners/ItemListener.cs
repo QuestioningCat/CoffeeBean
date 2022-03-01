@@ -1,5 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using CoffeeBean;
 
-public class ItemListener : BaseGameEventListener<Item, ItemEvent, UnityItemEvent> { }
+namespace CoffeeBean.Event
+{
+    public class ItemListener : BaseGameEventListener<Item, ItemEvent, UnityItemEvent> { }
+}

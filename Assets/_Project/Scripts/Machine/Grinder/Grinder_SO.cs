@@ -1,12 +1,17 @@
+using CoffeeBean.Tag;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Machines", menuName = "Coffee/Machines/Grinder")]
-public class Grinder_SO : ScriptableObject
+namespace CoffeeBean.Machine
 {
-    public string Name;
-    public int HopperCapacity;
 
-    public List<Tag_SO> Tags;
+    [CreateAssetMenu(fileName = "Machines", menuName = "Coffee/Machines/Grinder")]
+    public class Grinder_SO : ScriptableObject
+    {
+        public string Name;
+        public int HopperCapacity;
+
+        public List<Tag_SO> Tags;
+    }
 }

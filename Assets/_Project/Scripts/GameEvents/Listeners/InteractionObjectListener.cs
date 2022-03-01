@@ -1,5 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+namespace CoffeeBean.Event
+{
+    public class InteractionObjectListener : BaseGameEventListener<InteractionObject, InteractionObjectEvent, UintyInteractionObjectEvent> { }
 
-public class InteractionObjectListener : BaseGameEventListener<InteractionObject, InteractionObjectEvent, UintyInteractionObjectEvent> { }
+}

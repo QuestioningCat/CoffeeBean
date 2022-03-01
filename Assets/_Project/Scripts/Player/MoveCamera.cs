@@ -2,13 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MoveCamera : MonoBehaviour
+namespace CoffeeBean.Player
 {
-    [SerializeField]
-    Transform cameraPostion;
-
-    private void Update()
+    public class MoveCamera : MonoBehaviour
     {
-        transform.position = cameraPostion.position;
+        [SerializeField]
+        Transform cameraPostion;
+
+        private void Update()
+        {
+            transform.position = cameraPostion.position;
+        }
     }
 }

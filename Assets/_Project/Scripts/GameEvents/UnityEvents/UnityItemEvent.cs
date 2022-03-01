@@ -1,4 +1,8 @@
+using CoffeeBean;
 using UnityEngine.Events;
 
-[System.Serializable] public class UnityItemEvent : UnityEvent<Item> { }
+namespace CoffeeBean.Event
+{
+    [System.Serializable] public class UnityItemEvent : UnityEvent<Item> { }
 
+}

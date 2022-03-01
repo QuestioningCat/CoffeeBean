@@ -4,31 +4,36 @@ using UnityEngine;
 
 //https://www.youtube.com/watch?v=iXNwWpG7EhM
 
-public abstract class BaseGameEvent<T> : ScriptableObject
+namespace CoffeeBean.Event
 {
-    private readonly List<IGameEventListener<T>> eventListeners = new List<IGameEventListener<T>>();
 
-    public void Raise(T item)
+
+    public abstract class BaseGameEvent<T> : ScriptableObject
     {
-        for(int i = eventListeners.Count - 1; i >= 0; i--)
+        private readonly List<IGameEventListener<T>> eventListeners = new List<IGameEventListener<T>>();
+
+        public void Raise(T item)
         {
-            eventListeners[i].OnEventRaised(item);
+            for(int i = eventListeners.Count - 1; i >= 0; i--)
+            {
+                eventListeners[i].OnEventRaised(item);
+            }
         }
-    }
 
-    public void RegisterListener(IGameEventListener<T> listener)
-    {
-        if (!eventListeners.Contains(listener))
+        public void RegisterListener(IGameEventListener<T> listener)
         {
-            eventListeners.Add(listener);
+            if(!eventListeners.Contains(listener))
+            {
+                eventListeners.Add(listener);
+            }
         }
-    }
 
-    public void UnregisterListener(IGameEventListener<T> listener)
-    {
-        if(eventListeners.Contains(listener))
+        public void UnregisterListener(IGameEventListener<T> listener)
         {
-            eventListeners.Remove(listener);
+            if(eventListeners.Contains(listener))
+            {
+                eventListeners.Remove(listener);
+            }
         }
     }
 }

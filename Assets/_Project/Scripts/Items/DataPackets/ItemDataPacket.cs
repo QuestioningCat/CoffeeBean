@@ -2,14 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemDataPacket
+namespace CoffeeBean
 {
-    public Item Item { get; protected set; }
-    public int NewStateIndex { get; protected set; }
-
-    public ItemDataPacket(Item item, int newStateIndex)
+    public class ItemDataPacket
     {
-        this.Item = item;
-        this.NewStateIndex = newStateIndex;
+        public Item Item { get; protected set; }
+        public int NewStateIndex { get; protected set; }
+
+        public ItemDataPacket(Item item, int newStateIndex)
+        {
+            this.Item = item;
+            this.NewStateIndex = newStateIndex;
+        }
     }
 }

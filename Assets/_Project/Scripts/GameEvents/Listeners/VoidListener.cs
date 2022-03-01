@@ -2,4 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class VoidListener : BaseGameEventListener<Void, VoidEvent, UnityVoidEvent> { }
+namespace CoffeeBean.Event
+{
+    public class VoidListener : BaseGameEventListener<Void, VoidEvent, UnityVoidEvent> { }
+}

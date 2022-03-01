@@ -1,50 +1,55 @@
+using CoffeeBean.Event;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InteractionObjectController : MonoBehaviour
+
+namespace CoffeeBean
 {
-    [Header("Event")]
-    [SerializeField] private CraftingEvent onNewItemCrafted;
-
-    private List<InteractionObject> interactionObjects;
-
-    private void Awake()
+    public class InteractionObjectController : MonoBehaviour
     {
-        interactionObjects = new List<InteractionObject>();
-    }
+        [Header("Event")]
+        [SerializeField] private CraftingEvent onNewItemCrafted;
 
-    /// <summary>
-    /// Registers the given Espresso Machine to the list of all Espresso Machines
-    /// </summary>
-    /// <param name="machine"></param>
-    public void RegisterNewInteractionObject(InteractionObject interactionObject)
-    {
-        if(this.interactionObjects.Contains(interactionObject))
+        private List<InteractionObject> interactionObjects;
+
+        private void Awake()
         {
-            return;
+            interactionObjects = new List<InteractionObject>();
         }
 
-        this.interactionObjects.Add(interactionObject);
-    }
+        /// <summary>
+        /// Registers the given Espresso Machine to the list of all Espresso Machines
+        /// </summary>
+        /// <param name="machine"></param>
+        public void RegisterNewInteractionObject(InteractionObject interactionObject)
+        {
+            if(this.interactionObjects.Contains(interactionObject))
+            {
+                return;
+            }
+
+            this.interactionObjects.Add(interactionObject);
+        }
 
 
-    /// <summary>
-    /// Gets called when the player has clicked on a hitbox, Collider
-    /// </summary>
-    /// <param name="dataPacket"></param>
-    public void PlayerClickedOnHitBox(ItemHitboxDataPacket dataPacket)
-    {
+        /// <summary>
+        /// Gets called when the player has clicked on a hitbox, Collider
+        /// </summary>
+        /// <param name="dataPacket"></param>
+        public void PlayerClickedOnHitBox(ItemHitboxDataPacket dataPacket)
+        {
 
-        InteractionObject interactionObject = dataPacket.Hitbox.transform.GetComponent<InteractionObject>();
-        if(interactionObject == null || dataPacket.Item == null)
-            return;
-        OneComponentRecipes_OS recipie = interactionObject.IsValidRecipeCombination(dataPacket.Item);
-        if(recipie == null)
-            return;
+            InteractionObject interactionObject = dataPacket.Hitbox.transform.GetComponent<InteractionObject>();
+            if(interactionObject == null || dataPacket.Item == null)
+                return;
+            OneComponentRecipes_OS recipie = interactionObject.IsValidRecipeCombination(dataPacket.Item);
+            if(recipie == null)
+                return;
 
-        // we have clicked on the interactable object with an item we have a recipe for.
-        onNewItemCrafted.Raise(new CraftingDataPacket(dataPacket.Item, recipie));
+            // we have clicked on the interactable object with an item we have a recipe for.
+            onNewItemCrafted.Raise(new CraftingDataPacket(dataPacket.Item, recipie));
 
+        }
     }
 }

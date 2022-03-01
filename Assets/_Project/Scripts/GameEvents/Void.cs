@@ -1,1 +1,4 @@
-[System.Serializable] public struct Void { }
+namespace CoffeeBean.Event
+{
+    [System.Serializable] public struct Void { }
+}

@@ -1,4 +1,8 @@
+using CoffeeBean;
 using UnityEngine.Events;
 
-[System.Serializable] public class UnityCraftingEvent : UnityEvent<CraftingDataPacket> { }
+namespace CoffeeBean.Event
+{
+    [System.Serializable] public class UnityCraftingEvent : UnityEvent<CraftingDataPacket> { }
 
+}

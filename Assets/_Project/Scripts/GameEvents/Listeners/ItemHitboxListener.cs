@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class ItemHitboxListener : BaseGameEventListener<ItemHitboxDataPacket, ItemHitboxEvent, UnityItemHitboxEvent> { }
+namespace CoffeeBean.Event
+{
+    public class ItemHitboxListener : BaseGameEventListener<ItemHitboxDataPacket, ItemHitboxEvent, UnityItemHitboxEvent> { }
+}

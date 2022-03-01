@@ -3,53 +3,56 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerLook : MonoBehaviour
+namespace CoffeeBean.Player
 {
-    [SerializeField] 
-    private float sensX;
-    [SerializeField] 
-    private float sensY;
-
-    [SerializeField] 
-    Transform cam;
-    [SerializeField] 
-    Transform orientation;
-
-    private InputManager inputManager;
-
-    float mouseX;
-    float mouseY;
-
-    float multiplier = 0.01f;
-
-    float xRotation;
-    float yRotation;
-
-    private void Start()
+    public class PlayerLook : MonoBehaviour
     {
-        inputManager = InputManager.Instance;
+        [SerializeField]
+        private float sensX;
+        [SerializeField]
+        private float sensY;
 
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-    }
+        [SerializeField]
+        Transform cam;
+        [SerializeField]
+        Transform orientation;
 
-    private void Update()
-    {
-        MyInput();
+        private InputManager inputManager;
 
-        cam.transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
-        orientation.transform.rotation = Quaternion.Euler(0, yRotation, 0);
-    }
+        float mouseX;
+        float mouseY;
 
-    private void MyInput()
-    {
-        mouseX = inputManager.GetMouseDelta().x;
-        mouseY = inputManager.GetMouseDelta().y;
+        float multiplier = 0.01f;
 
-        yRotation += mouseX * sensX * multiplier;
-        xRotation -= mouseY * sensY * multiplier;
+        float xRotation;
+        float yRotation;
 
-        xRotation = Mathf.Clamp(xRotation, -90f, 90f);
+        private void Start()
+        {
+            inputManager = InputManager.Instance;
 
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
+
+        private void Update()
+        {
+            MyInput();
+
+            cam.transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
+            orientation.transform.rotation = Quaternion.Euler(0, yRotation, 0);
+        }
+
+        private void MyInput()
+        {
+            mouseX = inputManager.GetMouseDelta().x;
+            mouseY = inputManager.GetMouseDelta().y;
+
+            yRotation += mouseX * sensX * multiplier;
+            xRotation -= mouseY * sensY * multiplier;
+
+            xRotation = Mathf.Clamp(xRotation, -90f, 90f);
+
+        }
     }
 }

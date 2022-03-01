@@ -13,7 +13,6 @@ namespace CoffeeBean.Machine
         [SerializeField] private Grinder_SO grinder_SO;
 
         [Header("Events")]
-        [SerializeField] private GrinderEvent onNewGrinderCreated;
         [SerializeField] private ItemEvent onItemAttached;
         [SerializeField] private ItemHitboxEvent onPlayerPickedUpItem;
 
@@ -69,13 +68,6 @@ namespace CoffeeBean.Machine
             }
             return null;
         }
-
-        private void Start()
-        {
-            // Register the grind with it's controller
-            onNewGrinderCreated.Raise(this);
-        }
-
 
         public void Interact(ItemHitboxDataPacket dataPacket)
         {

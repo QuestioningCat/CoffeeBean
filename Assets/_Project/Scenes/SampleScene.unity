@@ -262,7 +262,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1433326086}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &53551013
 MonoBehaviour:
@@ -477,7 +477,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1433326086}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &243810542
 MonoBehaviour:
@@ -619,7 +619,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1433326086}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &344079498
 PrefabInstance:
@@ -2095,7 +2095,10 @@ MonoBehaviour:
   - {fileID: 839592293}
   - {fileID: 531473446}
   - {fileID: 1222325412}
-  onNewEspressoMachineCreated: {fileID: 11400000, guid: 0d7d6c0660fb9c04c960b4b94e2acd5f, type: 2}
+  onItemAttached: {fileID: 11400000, guid: 1936d763eefe0954a86d07633925147c, type: 2}
+  onPlayerPickedUpItem: {fileID: 11400000, guid: b5f81ee74f6a8a04b9d14450d0f39a8f, type: 2}
+  onNewItemCrafted: {fileID: 11400000, guid: 77f9f967e75019545a275ca27160bdde, type: 2}
+  onSteamMilk: {fileID: 11400000, guid: 20c587eb7f5515541bb0117110f6b6c3, type: 2}
 --- !u!65 &1149661237
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2582,7 +2585,6 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1710647317}
   - {fileID: 53551012}
   - {fileID: 299084640}
   - {fileID: 243810541}
@@ -2884,7 +2886,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1630206225}
   m_Layer: 0
-  m_Name: CoffeeMachineContainer
+  m_Name: MachineContainers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3131,111 +3133,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1705593952}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &1710647314
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1710647317}
-  - component: {fileID: 1710647316}
-  - component: {fileID: 1710647315}
-  - component: {fileID: 1710647318}
-  m_Layer: 0
-  m_Name: EspressoMachineManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1710647315
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1710647314}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c9873db5c617eb4ea6f1d0e0a247e88, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: 0d7d6c0660fb9c04c960b4b94e2acd5f, type: 2}
-  unityEventResponse:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1710647316}
-        m_TargetAssemblyTypeName: EspressoMachineController, Assembly-CSharp
-        m_MethodName: RegisterNewEspressoMachine
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &1710647316
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1710647314}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 758246f311c931248b8c91570dcd9f8c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  onItemAttached: {fileID: 11400000, guid: 1936d763eefe0954a86d07633925147c, type: 2}
-  onPlayerPickedUpItem: {fileID: 11400000, guid: b5f81ee74f6a8a04b9d14450d0f39a8f, type: 2}
-  onNewItemCrafted: {fileID: 11400000, guid: 77f9f967e75019545a275ca27160bdde, type: 2}
-  onSteamMilk: {fileID: 11400000, guid: 20c587eb7f5515541bb0117110f6b6c3, type: 2}
---- !u!4 &1710647317
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1710647314}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1433326086}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1710647318
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1710647314}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c8b008e003d10f4a87e75ac2554794e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: ea44254cd65484a48ad7a3c7e9ead5f2, type: 2}
-  unityEventResponse:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1710647316}
-        m_TargetAssemblyTypeName: EspressoMachineController, Assembly-CSharp
-        m_MethodName: PlayerClickedOnHitBox
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1 &1742871826
 GameObject:
   m_ObjectHideFlags: 0
@@ -3669,7 +3566,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grinder_SO: {fileID: 11400000, guid: 0ced22a1b49613b4a9b20b711677cbbe, type: 2}
-  onNewGrinderCreated: {fileID: 11400000, guid: d5c3b6ef9c54f5d4ca48b8e489cceaf1, type: 2}
   onItemAttached: {fileID: 11400000, guid: 1936d763eefe0954a86d07633925147c, type: 2}
   onPlayerPickedUpItem: {fileID: 11400000, guid: b5f81ee74f6a8a04b9d14450d0f39a8f, type: 2}
   onGrindCoffeeIntoGrinder: {fileID: 11400000, guid: 20c587eb7f5515541bb0117110f6b6c3, type: 2}

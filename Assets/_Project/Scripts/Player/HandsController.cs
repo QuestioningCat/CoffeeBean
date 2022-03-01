@@ -175,23 +175,31 @@ namespace CoffeeBean.Player
             {
                 if(Physics.Raycast(ray, out hit, pickUpDistance))
                 {
-                    if(hit.transform.GetComponentInParent<Grinder>() != null && hit.transform.GetComponentInParent<Grinder>().GetTag("Usable"))
-                    {
-                        onPlayerClickedHitbox.Raise(new ItemHitboxDataPacket(itemInHand.GetComponent<Item>(), hit.collider, hand));
-                        return;
-                    }
 
-                    if(hit.transform.GetComponentInParent<EspressoMachine>() != null && hit.transform.GetComponentInParent<EspressoMachine>().GetTag("Usable"))
-                    {
-                        onPlayerClickedHitbox.Raise(new ItemHitboxDataPacket(itemInHand.GetComponent<Item>(), hit.collider, hand));
-                        return;
-                    }
-                    // using get component as interaction Items do not work off of attachment points like the grinder and espresso machine, who do use attachment points.
-                    if(hit.transform.GetComponent<InteractionObject>() != null && hit.transform.GetComponent<InteractionObject>().GetTag("InteractionItem"))
-                    {
-                        onPlayerClickedHitbox.Raise(new ItemHitboxDataPacket(itemInHand.GetComponent<Item>(), hit.collider, hand));
-                        return;
-                    }
+                    IInteractable interactable = hit.transform.GetComponent<IInteractable>();
+                    if (interactable == null) return;
+
+                    interactable.Interact(new ItemHitboxDataPacket(itemInHand.GetComponent<Item>(), hit.collider, hand));
+                    Debug.Log("DING");
+                    return;
+
+                    //if(hit.transform.GetComponentInParent<Grinder>() != null && hit.transform.GetComponentInParent<Grinder>().GetTag("Usable"))
+                    //{
+                    //    onPlayerClickedHitbox.Raise(new ItemHitboxDataPacket(itemInHand.GetComponent<Item>(), hit.collider, hand));
+                    //    return;
+                    //}
+
+                    //if(hit.transform.GetComponentInParent<EspressoMachine>() != null && hit.transform.GetComponentInParent<EspressoMachine>().GetTag("Usable"))
+                    //{
+                    //    onPlayerClickedHitbox.Raise(new ItemHitboxDataPacket(itemInHand.GetComponent<Item>(), hit.collider, hand));
+                    //    return;
+                    //}
+                    //// using get component as interaction Items do not work off of attachment points like the grinder and espresso machine, who do use attachment points.
+                    //if(hit.transform.GetComponent<InteractionObject>() != null && hit.transform.GetComponent<InteractionObject>().GetTag("InteractionItem"))
+                    //{
+                    //    onPlayerClickedHitbox.Raise(new ItemHitboxDataPacket(itemInHand.GetComponent<Item>(), hit.collider, hand));
+                    //    return;
+                    //}
                 }
 
 

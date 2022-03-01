@@ -6,7 +6,7 @@ using UnityEngine;
 namespace CoffeeBean.Machine
 {
 
-    public class GrinderController : MonoBehaviour
+    public class GrinderController : MonoBehaviour, IInteractable
     {
         [Header("Event")]
         [SerializeField] private ItemEvent onItemAttached;
@@ -80,6 +80,11 @@ namespace CoffeeBean.Machine
                 // tell the grinder to start grinding cofee
                 grinder.GrindCoffee(dataPacket.Item);
             }
+        }
+
+        public void Interact(ItemHitboxDataPacket datapacket)
+        {
+            PlayerClickedOnHitBox(datapacket);
         }
     }
 

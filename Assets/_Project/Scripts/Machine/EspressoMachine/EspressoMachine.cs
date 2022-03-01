@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using CoffeeBean.Event;
+using CoffeeBean.Tag;
 
 namespace CoffeeBean.Machine
 {

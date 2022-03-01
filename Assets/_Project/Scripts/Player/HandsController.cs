@@ -166,7 +166,11 @@ namespace CoffeeBean.Player
                     }
                     else
                     {
-                        onPlayerClickedHitbox.Raise(new ItemHitboxDataPacket(null, hit.collider, hand));
+
+                        IInteractable interactable = hit.transform.GetComponentInParent<IInteractable>();
+                        if(interactable == null) return;
+                        interactable.Interact(new ItemHitboxDataPacket(null, hit.collider, hand));
+                        //onPlayerClickedHitbox.Raise(new ItemHitboxDataPacket(null, hit.collider, hand));
                         return;
                     }
                 }
@@ -176,11 +180,9 @@ namespace CoffeeBean.Player
                 if(Physics.Raycast(ray, out hit, pickUpDistance))
                 {
 
-                    IInteractable interactable = hit.transform.GetComponent<IInteractable>();
+                    IInteractable interactable = hit.transform.GetComponentInParent<IInteractable>();
                     if (interactable == null) return;
-
                     interactable.Interact(new ItemHitboxDataPacket(itemInHand.GetComponent<Item>(), hit.collider, hand));
-                    Debug.Log("DING");
                     return;
 
                     //if(hit.transform.GetComponentInParent<Grinder>() != null && hit.transform.GetComponentInParent<Grinder>().GetTag("Usable"))

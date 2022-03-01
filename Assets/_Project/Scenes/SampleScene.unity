@@ -262,7 +262,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1433326086}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &53551013
 MonoBehaviour:
@@ -477,7 +477,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1433326086}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &243810542
 MonoBehaviour:
@@ -619,7 +619,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1433326086}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &344079498
 PrefabInstance:
@@ -801,109 +801,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.001604858, y: 0.0034954243, z: 0.0016255572}
   m_Center: {x: 0.00020652796, y: 0.0016525164, z: 0.000111260786}
---- !u!1 &554505473
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 554505476}
-  - component: {fileID: 554505475}
-  - component: {fileID: 554505474}
-  - component: {fileID: 554505477}
-  m_Layer: 0
-  m_Name: GrinderManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &554505474
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 554505473}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 624a5e131d661b54d97ed39aa7759090, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: d5c3b6ef9c54f5d4ca48b8e489cceaf1, type: 2}
-  unityEventResponse:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 554505475}
-        m_TargetAssemblyTypeName: GrinderController, Assembly-CSharp
-        m_MethodName: RegisterNewGrinder
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &554505475
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 554505473}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5229553d1d542d541bbf372b5e63e012, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  onItemAttached: {fileID: 11400000, guid: 1936d763eefe0954a86d07633925147c, type: 2}
-  onPlayerPickedUpItem: {fileID: 11400000, guid: b5f81ee74f6a8a04b9d14450d0f39a8f, type: 2}
---- !u!4 &554505476
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 554505473}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1433326086}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &554505477
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 554505473}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c8b008e003d10f4a87e75ac2554794e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: ea44254cd65484a48ad7a3c7e9ead5f2, type: 2}
-  unityEventResponse:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 554505475}
-        m_TargetAssemblyTypeName: GrinderController, Assembly-CSharp
-        m_MethodName: PlayerClickedOnHitBox
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1001 &563638366
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2685,7 +2582,6 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 554505476}
   - {fileID: 1710647317}
   - {fileID: 53551012}
   - {fileID: 299084640}
@@ -3310,7 +3206,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1433326086}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1710647318
 MonoBehaviour:
@@ -3774,6 +3670,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   grinder_SO: {fileID: 11400000, guid: 0ced22a1b49613b4a9b20b711677cbbe, type: 2}
   onNewGrinderCreated: {fileID: 11400000, guid: d5c3b6ef9c54f5d4ca48b8e489cceaf1, type: 2}
+  onItemAttached: {fileID: 11400000, guid: 1936d763eefe0954a86d07633925147c, type: 2}
+  onPlayerPickedUpItem: {fileID: 11400000, guid: b5f81ee74f6a8a04b9d14450d0f39a8f, type: 2}
   onGrindCoffeeIntoGrinder: {fileID: 11400000, guid: 20c587eb7f5515541bb0117110f6b6c3, type: 2}
   attachmentPoints:
   - {fileID: 1610207877}

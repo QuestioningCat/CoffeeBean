@@ -6,7 +6,7 @@ namespace CoffeeBean
 {
 
     [RequireComponent(typeof(BoxCollider))]
-    public class InteractionObject : MonoBehaviour
+    public class InteractionObject : MonoBehaviour, IInteractable
     {
         [Header("Scriptable Object")]
         [Tooltip("The scriptable object template")]
@@ -17,7 +17,7 @@ namespace CoffeeBean
         [SerializeField] private OneComponentRecipes_OS recipe;
 
         [Header("Events")]
-        [SerializeField] private InteractionObjectEvent onNewInteractionObjectCreated;
+        [SerializeField] private CraftingEvent onNewItemCrafted;
 
 
         public bool GetTag(string tag)
@@ -37,6 +37,15 @@ namespace CoffeeBean
             return false;
         }
 
+        public void Interact(ItemHitboxDataPacket dataPacket)
+        {
+            if(dataPacket.Item == null) return;
+            OneComponentRecipes_OS recipie = IsValidRecipeCombination(dataPacket.Item);
+            if(recipie == null) return;
+            // we have clicked on the interactable object with an item we have a recipe for.
+            onNewItemCrafted.Raise(new CraftingDataPacket(dataPacket.Item, recipie));
+        }
+
         /// <summary>
         /// Checks see if this Interaction Object has any single component recipes that the used Item can be used in.
         /// </summary>
@@ -53,11 +62,6 @@ namespace CoffeeBean
             }
 
             return null;
-        }
-
-        private void Start()
-        {
-            onNewInteractionObjectCreated.Raise(this);
         }
 
     }

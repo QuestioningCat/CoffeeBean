@@ -53,16 +53,11 @@ namespace CoffeeBean.Machine
 
         public void Interact(ItemHitboxDataPacket dataPacket)
         {
-            EspressoMachine machine = dataPacket.Hitbox.transform.GetComponentInParent<EspressoMachine>();
-
-            if(machine == null) return;
-
-
             if(dataPacket.Item == null)
             {
                 // The player has clicked on a grinder but is not holding anything.
                 // Find out what part of the machine the player has clicked on.
-                AttachmentPoint attachmentPoint = machine.GetAttachmentPoin(dataPacket.Hitbox);
+                AttachmentPoint attachmentPoint = GetAttachmentPoin(dataPacket.Hitbox);
                 if(attachmentPoint == null) return;
                 // if there is an item attached to that part.
                 if(attachmentPoint.GetAttachedItem() == null) return;
@@ -74,8 +69,7 @@ namespace CoffeeBean.Machine
             }
             else
             {
-
-                AttachmentPoint attachmentPoint = machine.GetAttachmentPoin(dataPacket.Hitbox);
+                AttachmentPoint attachmentPoint = GetAttachmentPoin(dataPacket.Hitbox);
 
                 if(attachmentPoint == null) return;
 

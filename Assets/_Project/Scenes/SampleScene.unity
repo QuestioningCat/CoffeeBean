@@ -1986,7 +1986,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactionItemData_SO: {fileID: 11400000, guid: b7e3166d208eb2245a00f16e3ff7452f, type: 2}
   recipe: {fileID: 11400000, guid: ec4bac99915226041b07c350ba056fe0, type: 2}
-  onNewInteractionObjectCreated: {fileID: 11400000, guid: 1dca1066df141b04f94fd890f961faac, type: 2}
+  onNewItemCrafted: {fileID: 11400000, guid: 77f9f967e75019545a275ca27160bdde, type: 2}
 --- !u!65 &1143074039
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -40,15 +40,6 @@ namespace CoffeeBean
         public void PlayerClickedOnHitBox(ItemHitboxDataPacket dataPacket)
         {
 
-            InteractionObject interactionObject = dataPacket.Hitbox.transform.GetComponent<InteractionObject>();
-            if(interactionObject == null || dataPacket.Item == null)
-                return;
-            OneComponentRecipes_OS recipie = interactionObject.IsValidRecipeCombination(dataPacket.Item);
-            if(recipie == null)
-                return;
-
-            // we have clicked on the interactable object with an item we have a recipe for.
-            onNewItemCrafted.Raise(new CraftingDataPacket(dataPacket.Item, recipie));
 
         }
     }

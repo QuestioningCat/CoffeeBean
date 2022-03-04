@@ -1,5 +1,5 @@
+using CoffeeBean.Tags;
 using CoffeeBean.Event;
-using CoffeeBean.Tag;
 using UnityEngine;
 
 namespace CoffeeBean

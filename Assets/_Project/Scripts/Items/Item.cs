@@ -1,5 +1,5 @@
 using CoffeeBean.Event;
-using CoffeeBean.Tag;
+using CoffeeBean.Tags;
 using System.Collections.Generic;
 using UnityEngine;
 

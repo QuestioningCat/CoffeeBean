@@ -1,7 +1,4 @@
-using CoffeeBean;
-using CoffeeBean.Tag;
-using System.Collections;
-using System.Collections.Generic;
+using CoffeeBean.Tags;
 using UnityEngine;
 
 namespace CoffeeBean.Machine

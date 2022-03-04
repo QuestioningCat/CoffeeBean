@@ -1,5 +1,4 @@
-using CoffeeBean.Tag;
-using System.Collections;
+using CoffeeBean.Tags;
 using System.Collections.Generic;
 using UnityEngine;
 

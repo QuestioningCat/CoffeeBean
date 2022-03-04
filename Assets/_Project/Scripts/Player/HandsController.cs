@@ -1,10 +1,6 @@
-using CoffeeBean;
-using CoffeeBean.Machine;
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using CoffeeBean.Event;
+using CoffeeBean.Input;
 
 namespace CoffeeBean.Player
 {

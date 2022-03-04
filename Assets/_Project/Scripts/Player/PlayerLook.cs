@@ -1,7 +1,5 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using CoffeeBean.Input;
 
 namespace CoffeeBean.Player
 {
@@ -45,8 +43,10 @@ namespace CoffeeBean.Player
 
         private void MyInput()
         {
-            mouseX = inputManager.GetMouseDelta().x;
-            mouseY = inputManager.GetMouseDelta().y;
+            Vector2 input = inputManager.GetMouseDelta();
+
+            mouseX = input.x;
+            mouseY = input.y;
 
             yRotation += mouseX * sensX * multiplier;
             xRotation -= mouseY * sensY * multiplier;

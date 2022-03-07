@@ -1,1 +1,0 @@
-public class EspressoMachineListener : BaseGameEventListener<EspressoMachine, EspressoMachineEvent, UintyEspressoMachineEvent> { }

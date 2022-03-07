@@ -1755,7 +1755,6 @@ MonoBehaviour:
   LeftHandLocationRef: {fileID: 1863807713}
   RightHandLocationRef: {fileID: 748246883}
   cameraHolder: {fileID: 1327724739}
-  onPlayerClickedHitbox: {fileID: 11400000, guid: ea44254cd65484a48ad7a3c7e9ead5f2, type: 2}
   onNewItemCrafted: {fileID: 11400000, guid: 77f9f967e75019545a275ca27160bdde, type: 2}
 --- !u!114 &1000095796
 MonoBehaviour:
@@ -2214,8 +2213,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.50088143, y: 0.49298325, z: 0.52887446}
-  m_Center: {x: -0.0049389084, y: 0.002757311, z: 0.01344397}
+  m_Size: {x: 0.50088143, y: 0.40894723, z: 0.5409351}
+  m_Center: {x: -0.0049389084, y: 0.044775326, z: 0.0074136485}
 --- !u!114 &1232396223
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2634,8 +2633,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.50088143, y: 0.49298325, z: 0.52887446}
-  m_Center: {x: -0.0049389084, y: 0.002757311, z: 0.01344397}
+  m_Size: {x: 0.50088143, y: 0.39699978, z: 0.5341101}
+  m_Center: {x: -0.0049389084, y: 0.050749052, z: 0.010826134}
 --- !u!4 &1454343763
 Transform:
   m_ObjectHideFlags: 0

@@ -25,7 +25,6 @@ namespace CoffeeBean.Player
 
         [Header("Events")]
         [Tooltip("the scriptable object which will raise the event when the player tries to interact with something")]
-        [SerializeField] private ItemHitboxEvent onPlayerClickedHitbox;
         [SerializeField] private CraftingEvent onNewItemCrafted;
 
         // distance the player can be away from something to pick it up
@@ -49,12 +48,24 @@ namespace CoffeeBean.Player
 
         }
 
-        private void DropItemFromHand(Item item)
+        private void DropItemFromHand(Item item, Hand hand)
         {
             Rigidbody rb = item.transform.GetComponent<Rigidbody>();
             rb.useGravity = true;
             rb.freezeRotation = false;
             item.GetComponent<BoxCollider>().enabled = true;
+
+            switch(hand)
+            {
+                case Hand.LeftHand:
+                    itemInLeftHand = null;
+                    break;
+                case Hand.RightHand:
+                    itemInRightHand = null;
+                    break;
+                case Hand.NoHands:
+                    break;
+            }
         }
 
         public void ItemAttachedToMachine(Item item)
@@ -69,22 +80,6 @@ namespace CoffeeBean.Player
                 itemInRightHand = null;
                 item.UpdateCurrentHand(Hand.NoHands);
 
-            }
-        }
-
-        public void PlayerPickedUpItem(Item item, Hand hand)
-        {
-            if(hand == Hand.LeftHand)
-            {
-                itemInLeftHand = item;
-                item.UpdateCurrentHand(Hand.LeftHand);
-                PickedUpItem(item);
-            }
-            else if(hand == Hand.RightHand)
-            {
-                itemInRightHand = item;
-                item.UpdateCurrentHand(Hand.RightHand);
-                PickedUpItem(item);
             }
         }
 
@@ -157,7 +152,7 @@ namespace CoffeeBean.Player
                     // check to see if we are looking at something we can pick up
                     if(hit.transform.GetComponent<Item>() != null && hit.transform.GetComponent<Item>().HasTag("PickUp"))
                     {
-                        PlayerPickedUpItem(hit.transform.GetComponent<Item>(), hand);
+                        PlayerPickedUpItem(new ItemHitboxDataPacket(hit.transform.GetComponent<Item>(), null, hand));
                         return;
                     }
                     else
@@ -176,8 +171,13 @@ namespace CoffeeBean.Player
                 if(Physics.Raycast(ray, out hit, pickUpDistance))
                 {
                     IInteractable interactable = hit.transform.GetComponentInParent<IInteractable>();
-                    if (interactable == null) return;
-                    interactable.Interact(new ItemHitboxDataPacket(itemInHand.GetComponent<Item>(), hit.collider, hand));
+                    if(interactable != null)
+                    {
+                        interactable.Interact(new ItemHitboxDataPacket(itemInHand.GetComponent<Item>(), hit.collider, hand));
+                        return;
+                    }
+
+                    DropItemFromHand(itemInHand, hand);
                     return;
                 }
 
@@ -185,18 +185,8 @@ namespace CoffeeBean.Player
                 // If we are here. Then we are looking at something and holding an item, but we cant do anything with it
                 // so just drop it
                 // to prevent this final action, you should return before reaching this point
-                DropItemFromHand(itemInHand);
-                switch(hand)
-                {
-                    case Hand.LeftHand:
-                        itemInLeftHand = null;
-                        break;
-                    case Hand.RightHand:
-                        itemInRightHand = null;
-                        break;
-                    case Hand.NoHands:
-                        break;
-                }
+                DropItemFromHand(itemInHand, hand);
+
             }
         }
 

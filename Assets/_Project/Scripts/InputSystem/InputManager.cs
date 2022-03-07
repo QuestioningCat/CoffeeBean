@@ -65,18 +65,10 @@ namespace CoffeeBean.Input
         {
             return playerControls.Player.LeftHandInteract.triggered;
         }
-
         public bool RightInteractThisFrame()
         {
             return playerControls.Player.RightHandInteract.triggered;
         }
 
-        
-
-
-        ////public PlayerControls.PlayerActions GetAction(PlayerControls.PlayerActions playerActions)
-        ////{
-
-        ////}
     }
 }

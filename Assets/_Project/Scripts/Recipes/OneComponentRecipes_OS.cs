@@ -1,4 +1,3 @@
-using CoffeeBean.Tags;
 using UnityEngine;
 
 namespace CoffeeBean

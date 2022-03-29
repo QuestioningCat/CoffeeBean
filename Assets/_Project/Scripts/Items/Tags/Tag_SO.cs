@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace CoffeeBean.Tags
+namespace CoffeeBean
 {
     [CreateAssetMenu(fileName = "New Tag", menuName = "New Tag")]
     public class Tag_SO : ScriptableObject { }

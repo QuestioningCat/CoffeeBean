@@ -1,4 +1,3 @@
-using CoffeeBean.Tags;
 using CoffeeBean.Event;
 using UnityEngine;
 
